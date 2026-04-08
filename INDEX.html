@@ -1,653 +1,583 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EXEDY FRAP — Ball Joint Technical Detail — OEM Advanced Line">
-<title>EXEDY FRAP — BJ-RE-1042 — Ball Joint</title>
+<meta name="description" content="EXEDY FRAP — Premium Steering, Suspension & Chassis Components — We understand OE, because we are OE.">
+<title>EXEDY FRAP — Corner Module Engineering Since 1932</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Michroma&display=swap" rel="stylesheet">
 <script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        'brand-blue': '#0052A5',
-        'brand-blue-dark': '#002D5E',
-        'brand-blue-deep': '#001A38',
-        'brand-blue-light': '#e6f0fa',
-        'brand-red': '#E50064',
-        'brand-red-dark': '#b30050',
-        'italy-green': '#009246',
-        'italy-red': '#CE2029',
-      },
-      fontFamily: {
-        display: ['Michroma', 'sans-serif'],
-        body: ['"Exo 2"', 'sans-serif'],
-      },
-    },
-  },
-}
+tailwind.config={theme:{extend:{colors:{'b-blue':'#0052A5','b-blue-d':'#002D5E','b-blue-dp':'#001A38','b-blue-l':'#e6f0fa','b-red':'#E50064','b-red-d':'#b30050','i-green':'#009246','i-red':'#CE2029','rosso':'#CE2029','rosso-d':'#991520','rosso-l':'#fce8e9','bull':'#1e293b','bull-m':'#334155','bull-l':'#f1f5f9','adj':'#0ea5e9','adj-d':'#0369a1','adj-l':'#e0f2fe'},fontFamily:{display:['Michroma','sans-serif'],body:['"Exo 2"','sans-serif']}}}}
 </script>
 <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  html { scroll-behavior: smooth; }
-
-  /* Italy tricolor strip */
-  .italy-strip {
-    background: linear-gradient(90deg, #009246 0%, #009246 33.33%, #fff 33.33%, #fff 66.66%, #CE2029 66.66%, #CE2029 100%);
-  }
-
-  /* Sticky header shadow on scroll */
-  .header-scrolled {
-    box-shadow: 0 4px 24px rgba(0,42,94,0.12);
-    backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.97) !important;
-  }
-
-  /* Subtle grid pattern overlay */
-  .grid-pattern {
-    background-image:
-      linear-gradient(rgba(0,82,165,0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,82,165,0.018) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-
-  /* Tech table */
-  .tech-table tr { transition: background 0.15s; }
-  .tech-table tr:hover { background: #f0f6fc; }
-
-  /* CTA pulse */
-  @keyframes pulse-ring {
-    0% { box-shadow: 0 0 0 0 rgba(0,82,165,0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(0,82,165,0); }
-    100% { box-shadow: 0 0 0 0 rgba(0,82,165,0); }
-  }
-  .cta-pulse { animation: pulse-ring 2.4s infinite; }
-
-  /* Accordion transition */
-  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s; opacity: 0; }
-  .accordion-body.open { opacity: 1; }
-
-  /* Tab underline */
-  .tab-active { color: #0052A5; border-bottom: 3px solid #0052A5; }
-  .tab-inactive { color: #64748b; border-bottom: 3px solid transparent; }
-  .tab-inactive:hover { color: #002D5E; border-bottom-color: #e2e8f0; }
-
-  /* Seal rotation */
-  @keyframes spin-slow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .seal-ring { animation: spin-slow 30s linear infinite; }
-
-  /* Slide-in on load */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-  .fade-up { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
-  .fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
-  .fade-up-d2 { animation-delay: 0.25s; opacity: 0; }
-  .fade-up-d3 { animation-delay: 0.4s; opacity: 0; }
-  .fade-up-d4 { animation-delay: 0.55s; opacity: 0; }
-
-  /* Product image hover */
-  .product-img-wrap:hover img { transform: scale(1.03); }
-  .product-img-wrap img { transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
-
-  /* Mobile menu */
-  .mobile-menu { transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
-  .mobile-menu.open { transform: translateX(0); }
+*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.italy-strip{background:linear-gradient(90deg,#009246 0%,#009246 33.33%,#fff 33.33%,#fff 66.66%,#CE2029 66.66%,#CE2029 100%)}
+.header-scrolled{box-shadow:0 4px 30px rgba(0,42,94,.12);backdrop-filter:blur(14px);background:rgba(255,255,255,.97)!important}
+.grid-pat{background-image:linear-gradient(rgba(0,82,165,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(0,82,165,.015) 1px,transparent 1px);background-size:28px 28px}
+@keyframes pulse-r{0%{box-shadow:0 0 0 0 rgba(0,82,165,.45)}70%{box-shadow:0 0 0 12px rgba(0,82,165,0)}100%{box-shadow:0 0 0 0 rgba(0,82,165,0)}}.cta-pulse{animation:pulse-r 2.2s infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}.fade-up{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) both}
+.fade-d1{animation-delay:.08s}.fade-d2{animation-delay:.18s}.fade-d3{animation-delay:.28s}.fade-d4{animation-delay:.38s}.fade-d5{animation-delay:.48s}
+.tech-tr:hover{background:#f0f6fc}
+.tab-on{color:#0052A5;border-bottom:3px solid #0052A5}.tab-off{color:#64748b;border-bottom:3px solid transparent}.tab-off:hover{color:#002D5E;border-bottom-color:#e2e8f0}
+[x-cloak]{display:none!important}
+.mob-menu{transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1)}.mob-menu.open{transform:translateX(0)}
+.seal-spin{animation:spin 25s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.line-card{position:relative;overflow:hidden}.line-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.line-card.oem::before{background:linear-gradient(180deg,#0052A5,#002D5E)}.line-card.bull-c::before{background:linear-gradient(180deg,#475569,#0f172a)}.line-card.rosso-c::before{background:linear-gradient(180deg,#ff4d55,#991520)}.line-card.adj-c::before{background:linear-gradient(180deg,#38bdf8,#0369a1)}
 </style>
 </head>
 
-<body class="bg-white font-body text-slate-700 antialiased">
+<body class="bg-white font-body text-slate-700" x-data="app()" x-cloak>
 
-<!-- ═══════════════════════════════════════════════
-     HEADER — Sticky, Sidem-inspired
-     ═══════════════════════════════════════════════ -->
-<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300">
-  <!-- Italy tricolor top line -->
-  <div class="italy-strip h-1 w-full"></div>
-
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-5 lg:px-8 h-16 lg:h-[72px]">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-3 shrink-0">
-      <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-8 lg:h-10 w-auto">
-    </a>
-
-    <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-8">
-      <a href="#overview" class="font-display text-[11px] tracking-[1.5px] uppercase text-slate-500 hover:text-brand-blue transition-colors">Overview</a>
-      <a href="#tech-specs" class="font-display text-[11px] tracking-[1.5px] uppercase text-slate-500 hover:text-brand-blue transition-colors">Tech Specs</a>
-      <a href="#cross-ref" class="font-display text-[11px] tracking-[1.5px] uppercase text-slate-500 hover:text-brand-blue transition-colors">Cross-Reference</a>
-      <a href="#applications" class="font-display text-[11px] tracking-[1.5px] uppercase text-slate-500 hover:text-brand-blue transition-colors">Applications</a>
+<!-- ████████ NAVBAR ████████ -->
+<header class="fixed top-0 inset-x-0 z-50 bg-white transition-all duration-300" :class="scrolled && 'header-scrolled'" @scroll.window="scrolled = window.scrollY > 20">
+  <div class="italy-strip h-[3px] w-full"></div>
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-8 h-14 lg:h-[68px]">
+    <a href="#" @click.prevent="go('home')" class="shrink-0"><img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-7 lg:h-9 w-auto"></a>
+    <nav class="hidden lg:flex items-center gap-7">
+      <template x-for="s in sections" :key="s.id">
+        <button @click="go(s.id)" class="font-display text-[10px] tracking-[1.8px] uppercase transition-colors" :class="active===s.id?'text-b-blue':'text-slate-400 hover:text-b-blue-d'" x-text="s.label"></button>
+      </template>
     </nav>
-
-    <!-- Certification Badges — Desktop -->
-    <div class="hidden lg:flex items-center gap-3">
-      <span class="inline-flex items-center gap-1.5 bg-brand-blue-light text-brand-blue font-display text-[9px] tracking-wider px-3 py-1.5 rounded-full font-bold">IATF 16949</span>
-      <span class="inline-flex items-center gap-1.5 bg-brand-blue-light text-brand-blue font-display text-[9px] tracking-wider px-3 py-1.5 rounded-full font-bold">ISO 9001</span>
+    <div class="hidden lg:flex items-center gap-2">
+      <span class="bg-b-blue-l text-b-blue font-display text-[8px] tracking-wider px-2.5 py-1 rounded-full font-bold">IATF 16949</span>
+      <span class="bg-b-blue-l text-b-blue font-display text-[8px] tracking-wider px-2.5 py-1 rounded-full font-bold">ISO 9001</span>
     </div>
-
-    <!-- Mobile Hamburger -->
-    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-2 -mr-2" aria-label="Menu">
-      <span class="block w-6 h-[2px] bg-brand-blue-dark transition-all" id="bar1"></span>
-      <span class="block w-6 h-[2px] bg-brand-blue-dark transition-all" id="bar2"></span>
-      <span class="block w-4 h-[2px] bg-brand-red transition-all ml-auto" id="bar3"></span>
+    <button @click="mobOpen=true" class="lg:hidden flex flex-col gap-[5px] p-2">
+      <span class="block w-6 h-[2px] bg-b-blue-d"></span><span class="block w-6 h-[2px] bg-b-blue-d"></span><span class="block w-4 h-[2px] bg-b-red ml-auto"></span>
     </button>
   </div>
 </header>
 
-<!-- Mobile Menu Overlay -->
-<div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-white flex flex-col">
-  <div class="italy-strip h-1 w-full"></div>
-  <div class="flex items-center justify-between px-5 h-16">
-    <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-8 w-auto">
-    <button id="closeMenu" class="p-2 -mr-2" aria-label="Close menu">
-      <svg class="w-6 h-6 text-brand-blue-dark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
+<!-- Mobile menu -->
+<div class="mob-menu fixed inset-0 z-[60] bg-white flex flex-col" :class="mobOpen && 'open'">
+  <div class="italy-strip h-[3px]"></div>
+  <div class="flex items-center justify-between px-4 h-14">
+    <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-7">
+    <button @click="mobOpen=false" class="p-2"><svg class="w-6 h-6 text-b-blue-d" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
   </div>
-  <nav class="flex-1 flex flex-col justify-center items-center gap-8">
-    <a href="#overview" onclick="closeMobileMenu()" class="font-display text-lg tracking-[2px] uppercase text-brand-blue-dark">Overview</a>
-    <a href="#tech-specs" onclick="closeMobileMenu()" class="font-display text-lg tracking-[2px] uppercase text-brand-blue-dark">Tech Specs</a>
-    <a href="#cross-ref" onclick="closeMobileMenu()" class="font-display text-lg tracking-[2px] uppercase text-brand-blue-dark">Cross-Reference</a>
-    <a href="#applications" onclick="closeMobileMenu()" class="font-display text-lg tracking-[2px] uppercase text-brand-blue-dark">Applications</a>
+  <nav class="flex-1 flex flex-col justify-center items-center gap-7">
+    <template x-for="s in sections" :key="s.id">
+      <button @click="go(s.id);mobOpen=false" class="font-display text-base tracking-[2px] uppercase text-b-blue-d" x-text="s.label"></button>
+    </template>
   </nav>
-  <div class="flex justify-center gap-3 pb-8">
-    <span class="inline-flex bg-brand-blue-light text-brand-blue font-display text-[9px] tracking-wider px-3 py-1.5 rounded-full font-bold">IATF 16949</span>
-    <span class="inline-flex bg-brand-blue-light text-brand-blue font-display text-[9px] tracking-wider px-3 py-1.5 rounded-full font-bold">ISO 9001</span>
-  </div>
 </div>
 
+<main class="pt-[59px] lg:pt-[71px]">
 
-<!-- ═══════════════════════════════════════════════
-     HERO / PRODUCT OVERVIEW
-     ═══════════════════════════════════════════════ -->
-<main class="pt-[68px] lg:pt-[76px]">
+<!-- ████████ SECTION: HOME ████████ -->
+<section x-show="active==='home'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
 
-<section id="overview" class="grid-pattern">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-16">
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+  <!-- HERO -->
+  <div class="relative bg-gradient-to-br from-b-blue-dp via-[#0a1e3d] to-b-blue-d min-h-[85vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 opacity-[.04]" style="background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px"></div>
+    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-b-blue/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-b-red/8 rounded-full blur-[100px]"></div>
 
-      <!-- LEFT — Product Image -->
-      <div class="fade-up fade-up-d1">
-        <div class="product-img-wrap relative bg-gradient-to-br from-slate-50 to-brand-blue-light rounded-2xl border border-slate-200 overflow-hidden aspect-square lg:aspect-[4/3] flex items-center justify-center group">
-          <!-- Decorative corner -->
-          <div class="absolute top-0 left-0 w-20 h-20 overflow-hidden">
-            <div class="absolute -top-1 -left-1 w-10 h-10 border-t-[3px] border-l-[3px] border-brand-blue rounded-tl-2xl"></div>
-          </div>
-          <div class="absolute bottom-0 right-0 w-20 h-20 overflow-hidden">
-            <div class="absolute -bottom-1 -right-1 w-10 h-10 border-b-[3px] border-r-[3px] border-brand-red rounded-br-2xl"></div>
-          </div>
-
-          <!-- Product Image -->
-          <img src="bj.png" alt="Ball Joint — OEM Advanced Line" class="w-[75%] h-auto object-contain drop-shadow-lg">
-
-          <!-- Floating badge -->
-          <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-2 shadow-sm">
-            <span class="font-display text-[8px] tracking-[1.5px] text-brand-red font-bold block">OEM ADVANCED</span>
-            <span class="font-display text-[8px] tracking-[1px] text-brand-blue block">LINE</span>
-          </div>
-
-          <!-- Made in Italy seal -->
-          <div class="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-white border-2 border-slate-200 shadow-md flex items-center justify-center">
-            <div class="text-center">
-              <span class="block font-display text-[5px] tracking-wider text-slate-400 uppercase leading-tight">Made in</span>
-              <span class="block font-display text-[7px] font-bold text-italy-green leading-tight">ITALY</span>
-              <div class="italy-strip h-[2px] w-6 mx-auto mt-0.5 rounded-full"></div>
-            </div>
-          </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 w-full">
+      <div class="max-w-3xl fade-up">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="italy-strip h-[3px] w-12 rounded-full"></div>
+          <span class="font-display text-[10px] tracking-[3px] text-white/50 uppercase">Corner Module Engineering Since 1932</span>
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] text-white uppercase leading-[1.15] tracking-wide mb-6">
+          We understand OE<span class="text-b-red"> —</span><br>because we <em class="not-italic text-b-red">are</em> OE.
+        </h1>
+        <p class="text-base lg:text-lg text-white/60 leading-relaxed max-w-xl mb-10 font-light">Premium steering, suspension & chassis components. Tier-1 OEM supplier to Renault, Maserati, McLaren, INEOS, CNH & IVECO. Designed and assembled in Italy.</p>
+        <div class="flex flex-wrap gap-3">
+          <button @click="go('portfolio')" class="bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[10px] tracking-[2px] uppercase px-7 py-3.5 rounded-xl hover:shadow-lg hover:shadow-b-blue/25 transition-all">Explore Portfolio</button>
+          <button @click="go('catalog')" class="border border-white/20 text-white/80 font-display text-[10px] tracking-[2px] uppercase px-7 py-3.5 rounded-xl hover:bg-white/5 transition-all">Product Catalog</button>
         </div>
       </div>
 
-      <!-- RIGHT — Product Info -->
-      <div class="flex flex-col gap-5 fade-up fade-up-d2">
+      <!-- Certification Badges -->
+      <div class="flex flex-wrap gap-3 mt-14 fade-up fade-d3">
+        <template x-for="b in ['IATF 16949','ISO 9001','ISO 14001','ISO 45001','3 YEAR WARRANTY']">
+          <span class="inline-flex items-center gap-2 bg-white/[.06] backdrop-blur border border-white/10 text-white/70 font-display text-[8px] tracking-wider px-3.5 py-2 rounded-full" x-text="b"></span>
+        </template>
+        <span class="inline-flex items-center gap-2 bg-i-green/15 border border-i-green/20 text-i-green font-display text-[8px] tracking-wider px-3.5 py-2 rounded-full">
+          <span class="italy-strip h-[2px] w-4 rounded-full inline-block"></span> ASSEMBLED IN ITALY
+        </span>
+      </div>
+    </div>
+  </div>
 
-        <!-- Breadcrumb -->
-        <div class="flex items-center gap-2 text-xs text-slate-400 font-body">
-          <span>Catalog</span>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-          <span>OEM Advanced</span>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-          <span class="text-brand-blue font-semibold">Ball Joint</span>
-        </div>
+  <!-- ALLIANCE -->
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-24">
+    <div class="text-center mb-14 fade-up">
+      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Strategic Partnership</span>
+      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">The Alliance</h2>
+      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
+    </div>
 
-        <!-- Product Title -->
-        <div>
-          <div class="flex items-center gap-3 mb-2">
-            <span class="inline-block bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white font-display text-[10px] tracking-[2px] px-3 py-1 rounded-md uppercase">Safety Critical</span>
-            <span class="inline-block bg-brand-red/10 text-brand-red font-display text-[10px] tracking-[1.5px] px-3 py-1 rounded-md font-bold">3 YEAR WARRANTY</span>
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+      <!-- EXEDY -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-7 lg:p-8 shadow-sm hover:shadow-md transition-shadow fade-up fade-d1">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center shadow-lg shadow-b-red/20">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
           </div>
-          <h1 class="font-display text-2xl lg:text-[32px] font-bold text-brand-blue-dark uppercase tracking-wide leading-tight">
-            Ball Joint
-          </h1>
-          <p class="font-display text-sm lg:text-base text-slate-400 tracking-[1px] uppercase mt-1">OEM Advanced Line</p>
+          <h3 class="font-display text-sm uppercase tracking-wider text-b-red font-bold">EXEDY Corporation</h3>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">Founded in 1950 in Osaka, Japan. Global leader in advanced drivetrain technologies — the world's largest independent manufacturer of torque converters and a Tier-1 clutch supplier to major automakers worldwide.</p>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="bg-b-red/5 rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-red block">70+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Years</span></div>
+          <div class="bg-b-red/5 rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-red block">GLOBAL</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Network</span></div>
+        </div>
+      </div>
+
+      <!-- FRAP -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-7 lg:p-8 shadow-sm hover:shadow-md transition-shadow fade-up fade-d2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/20">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V10L12 2 2 10v12zm9-4.5V14h2v3.5h3L12 21l-4-3.5h3z"/></svg>
+          </div>
+          <h3 class="font-display text-sm uppercase tracking-wider text-b-blue font-bold">FRAP S.p.A.</h3>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed mb-4">Founded in 1932 near Turin, Italy. Historic manufacturer of steering & suspension components. "Integrated Quality" policy — the entire cycle from R&D to assembly managed strictly within Italy. Tier-1 OEM supplier to Renault, Maserati, McLaren, INEOS, CNH, IVECO.</p>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="bg-b-blue-l rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-blue block">90+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Years Heritage</span></div>
+          <div class="bg-b-blue-l rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-blue block">80+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Countries</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alliance statement -->
+    <div class="mt-8 bg-gradient-to-r from-b-blue-l to-blue-50 border-l-[6px] border-b-red rounded-r-2xl p-6 lg:p-8 shadow-sm fade-up fade-d3">
+      <span class="font-display text-[10px] tracking-[2px] text-b-red uppercase font-bold block mb-2">Strategic Alliance Overview</span>
+      <p class="text-sm text-slate-600 leading-relaxed">By integrating FRAP's IATF 16949 "Integrated Quality" manufacturing with EXEDY's extensive global distribution network, we deliver premium steering and suspension solutions — instantly accessible worldwide. Every component is developed from original OEM blueprints, validated through FEA, and manufactured under IATF 16949 protocols.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ████████ SECTION: PORTFOLIO ████████ -->
+<section x-show="active==='portfolio'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+
+    <div class="text-center mb-12 fade-up">
+      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Product Index</span>
+      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">4-Tier Portfolio</h2>
+      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
+      <p class="text-sm text-slate-500 max-w-2xl mx-auto mt-4 leading-relaxed">Engineered for precise fit, form, and unsurpassed kinematic function. Each architecture is developed from original OEM blueprints, validated through FEA, and manufactured under IATF 16949 quality protocols.</p>
+    </div>
+
+    <!-- Line Selector Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10 fade-up fade-d1">
+      <template x-for="l in lines" :key="l.id">
+        <button @click="activeLine=l.id" class="font-display text-[9px] tracking-[1.5px] uppercase px-4 py-2.5 rounded-xl border transition-all" :class="activeLine===l.id ? l.activeClass : 'border-slate-200 text-slate-400 hover:border-slate-300'" x-text="l.label"></button>
+      </template>
+    </div>
+
+    <!-- OEM ADVANCED -->
+    <div x-show="activeLine==='oem'" x-transition class="fade-up">
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/20"><span class="font-display text-sm text-white font-bold">01</span></div>
+            <div><h3 class="font-display text-lg uppercase tracking-wide text-b-blue">OEM Advanced Line</h3><span class="font-display text-[9px] tracking-[2px] text-b-red uppercase">OE Fix & Restoration</span></div>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-b-blue pl-4 bg-gradient-to-r from-b-blue/[.03] to-transparent py-3 rounded-r-lg">Factory components are engineered around strict cost-saving constraints. Our Tier-1 engineering department analyzes OE failure modes and deploys superior, direct-fit solutions designed to outlast the originals — while maintaining 100% dimensional compatibility.</p>
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-gradient-to-r from-b-blue to-b-blue-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Material</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">42CrMo4 Induction Hardened Alloy Steel</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Bearing</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">POM (Polyoxymethylene) — Maintenance-free</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Dust Cover</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Chloroprene Rubber (CR) Multi-Lip Seal</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Corrosion</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Zinc Flake / E-Coat — &gt;500h Salt Spray</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardware</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Grade 10.9 — Nut, bolt, cotter pin included</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Inspection</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">100% Eddy Current on all forged parts</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">1000</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">MPa Tensile</span></div>
+            <div class="bg-b-red/5 rounded-xl p-3 text-center border border-b-red/10"><span class="font-display text-lg font-bold text-b-red">500h+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Salt Spray</span></div>
+            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">10.9</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Grade HW</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-b-blue-l rounded-2xl border border-slate-200 p-8"><img src="bj.png" alt="OEM Advanced Ball Joint" class="w-full max-w-xs drop-shadow-lg"></div>
+      </div>
+    </div>
+
+    <!-- BULL SERIES -->
+    <div x-show="activeLine==='bull'" x-transition class="fade-up">
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-bull-m to-bull flex items-center justify-center shadow-lg shadow-bull/30"><span class="font-display text-sm text-white font-bold">02</span></div>
+            <div><h3 class="font-display text-lg uppercase tracking-wide text-bull">Bull Series HD</h3><span class="font-display text-[9px] tracking-[2px] text-bull-m uppercase">Heavy Duty & Fleet</span></div>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-bull pl-4 bg-gradient-to-r from-bull/[.03] to-transparent py-3 rounded-r-lg">Built for the harshest environments — commercial vans, municipal fleets, extreme towing, and GVM upgrades up to 4.5 tons. Delivering up to <strong class="text-bull">300% more durability</strong> than standard OE designs. Sintered metal bearing matrix with MoS₂ extreme-pressure lubrication.</p>
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-gradient-to-r from-bull-m to-bull"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Architecture</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Metal-to-Metal Sintered Powdered Technology</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Lubrication</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Self-Flushing Grooved Flow (Fully Greaseable)</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Structural</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Stamped → Solid Forged Body Conversion</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Grease</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Extreme-Pressure MoS₂ (Molybdenum Disulfide)</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Hardware</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Grade 10.9 / 12.9 on high-stress applications</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Application</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">4×4, Fleet, Commercial, Towing & Severe-Duty</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">300%</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">More Durable</span></div>
+            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">4.5T</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">GVM Rated</span></div>
+            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">MoS₂</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">EP Lube</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-bull-l rounded-2xl border border-slate-200 p-8"><img src="BULL JOINT.png" alt="Bull Series HD Joint" class="w-full max-w-xs drop-shadow-lg"></div>
+      </div>
+    </div>
+
+    <!-- FRAP ROSSO -->
+    <div x-show="activeLine==='rosso'" x-transition class="fade-up">
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-500 to-rosso-d flex items-center justify-center shadow-lg shadow-rosso/25"><span class="font-display text-sm text-white font-bold">03</span></div>
+            <div><h3 class="font-display text-lg uppercase tracking-wide text-rosso">FRAP Rosso</h3><span class="font-display text-[9px] tracking-[2px] text-rosso-d uppercase">Motorsport Performance</span></div>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-rosso pl-4 bg-gradient-to-r from-rosso/[.03] to-transparent py-3 rounded-r-lg">Engineered for rigorous motorsport applications. Eliminates comfort-oriented compromises with absolute structural rigidity — designed for massive lateral G-forces (<strong class="text-rosso">1.5G+</strong>) and extreme brake-induced thermal cycling. Derived from McLaren & Maserati Tier-1 supply programs.</p>
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-gradient-to-r from-red-500 to-rosso-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Bushings</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Shore A 90+ Polyurethane — Zero stick-slip</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Joints</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Spherical Pillow Ball / Uniball (Zero-Compliance)</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Construction</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Bimetallic Forged Aluminum / Steel</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Liner</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Self-lubricating PTFE</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Coating</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Signature Red Powder Coat — 80μm+ / 200°C</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Pedigree</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">McLaren, Maserati Tier-1 OEM derived</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">1.5G+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Lateral Load</span></div>
+            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">90+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Shore A</span></div>
+            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">PTFE</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Self-Lube</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-rosso-l rounded-2xl border border-slate-200 p-8"><img src="FRAP ROSSO.jpeg" alt="FRAP Rosso" class="w-full max-w-xs drop-shadow-lg"></div>
+      </div>
+    </div>
+
+    <!-- ADJUSTABLE -->
+    <div x-show="activeLine==='adj'" x-transition class="fade-up">
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-adj-d flex items-center justify-center shadow-lg shadow-adj/25"><span class="font-display text-sm text-white font-bold">04</span></div>
+            <div><h3 class="font-display text-lg uppercase tracking-wide text-adj-d">Adjustable Series</h3><span class="font-display text-[9px] tracking-[2px] text-adj uppercase">Lift / Drop Correction</span></div>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-adj pl-4 bg-gradient-to-r from-adj/[.03] to-transparent py-3 rounded-r-lg">Essential for 4×4 lift kits and lowered track cars. CNC-machined from aerospace-grade T6 billet aluminum with integrated turnbuckles for precise on-vehicle Camber & Caster correction (<strong class="text-adj-d">±3°</strong>). Up to 40% lighter than OE stamped steel. High-angle ball joints eliminate binding at full droop.</p>
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-gradient-to-r from-sky-400 to-adj-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Material</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Billet / Forged T6 Aerospace Aluminum</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Adjustment</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Turnbuckle / External Hex Sleeves</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Alignment</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Camber & Caster Correction ±3°</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Joints</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">High-Angle — 100% Binding-free at droop</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Surface</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Hard Anodized Type III (Mil-Spec)</td></tr>
+                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Weight</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Up to 40% lighter than OE steel</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">±3°</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Adjustment</span></div>
+            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">T6</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Billet Al</span></div>
+            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">100%</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Bind-Free</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-adj-l rounded-2xl border border-slate-200 p-8"><img src="ADJ_KIT.png" alt="Adjustable Series" class="w-full max-w-xs drop-shadow-lg"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ████████ SECTION: QUALITY ████████ -->
+<section x-show="active==='quality'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
+
+    <div class="text-center mb-14 fade-up">
+      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Engineering & Validation</span>
+      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">System Integration & Quality</h2>
+      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Corner Module + Safety -->
+    <div class="grid md:grid-cols-2 gap-5 mb-10 fade-up fade-d1">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22 21V7L12 3 2 7v14h5v-9h10v9h5z"/></svg></div>
+          <h3 class="font-display text-xs uppercase tracking-wider text-b-blue font-bold">Corner Module Engineering</h3>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed">We design for the Corner Module: the harmonious interaction between Suspension, Steering, and Braking. Every component is validated as a complete integrated system — not isolated replacement parts. This maintains original kinematic geometry for safe handling.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+          <h3 class="font-display text-xs uppercase tracking-wider text-b-red font-bold">Safety Factor > 3×</h3>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed">Steering parts are safety-critical. FRAP components are designed with a safety factor exceeding 3×, verified by in-house FEM and FEA analysis. Every critical dimension is validated against OEM CAD data — not reverse-engineered from worn samples.</p>
+      </div>
+    </div>
+
+    <!-- Validation Protocols -->
+    <h3 class="font-display text-sm uppercase tracking-[2px] text-b-blue-d mb-6 fade-up fade-d2">Validation Protocols</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 fade-up fade-d2">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-9 h-9 rounded-lg bg-b-blue/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M9 4v1.38c-.83-.33-1.72-.5-2.61-.5-1.79 0-3.58.68-4.95 2.05l3.33 3.33h1.11v1.11c.86.86 1.98 1.31 3.11 1.36V15H6v3c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4H9zm-1.11 6.41V8.26H5.61L4.57 7.22a5.07 5.07 0 011.82-.34c1.34 0 2.59.52 3.54 1.46l1.41 1.41-.2.2a2.7 2.7 0 01-1.92.8c-.47 0-.93-.12-1.33-.34zM18 18H8v-1h2v-2.59c-.57-.23-1.1-.57-1.56-1.01l-.01-.01L6.3 15.5H6V18h12z"/></svg></div>
+        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">FEA & FEM Modeling</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Finite Element Analysis on virtual 3D CAD prototypes before forging. Material redistributed to high-stress zones for optimal strength-to-weight ratios.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-9 h-9 rounded-lg bg-b-blue/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg></div>
+        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">4-Axis Dynamic Bench</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Vertical, lateral, longitudinal, and torsional loads simultaneously. Simulates potholes and off-road at 10Hz cyclic fatigue rates to destruction.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-9 h-9 rounded-lg bg-b-red/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">100% Eddy Current</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Every critical forged part undergoes mandatory Eddy Current or Magnetoscope inspection detecting sub-surface micro-cracks invisible to the eye.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-9 h-9 rounded-lg bg-i-green/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-i-green" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></div>
+        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">500h+ Salt Spray</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Premium Zinc Flake / E-Coat subjected to 500+ hours continuous salt-spray testing per ASTM B117, validating resistance to winter road chemicals.</p>
+      </div>
+    </div>
+
+    <!-- Logistics -->
+    <h3 class="font-display text-sm uppercase tracking-[2px] text-b-blue-d mb-6 fade-up fade-d3">Logistics 4.0</h3>
+    <div class="bg-gradient-to-r from-b-blue-l to-blue-50 rounded-2xl p-6 lg:p-8 border border-b-blue/10 fade-up fade-d3">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+        <div class="text-center"><span class="font-display text-2xl font-bold text-b-blue block">20K+</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Pallet Capacity</span></div>
+        <div class="text-center"><span class="font-display text-2xl font-bold text-b-red block">98%</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Order Fill Rate</span></div>
+        <div class="text-center"><span class="font-display text-2xl font-bold text-b-blue block">80+</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Countries</span></div>
+        <div class="text-center"><span class="font-display text-2xl font-bold text-b-red block">MRP</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">AI Forecasting</span></div>
+      </div>
+      <p class="text-sm text-slate-600 leading-relaxed">Centralized European hub with AI-powered MRP forecasting. Full TecDoc/TecAlliance integration, online VIN-based parts lookup, B2B ordering platform with real-time inventory visibility, and dedicated Key Account Managers for strategic distribution partners.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ████████ SECTION: CATALOG (QR PDP) ████████ -->
+<section x-show="active==='catalog'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+  <div class="grid-pat">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-16">
+
+      <!-- Product Header -->
+      <div class="flex flex-wrap items-center gap-3 mb-8 fade-up">
+        <div class="flex items-center gap-2 text-xs text-slate-400"><span>Catalog</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>OEM Advanced</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span class="text-b-blue font-semibold">Ball Joint</span></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <!-- LEFT: Image -->
+        <div class="fade-up fade-d1">
+          <div class="relative bg-gradient-to-br from-slate-50 to-b-blue-l rounded-2xl border border-slate-200 aspect-square lg:aspect-[4/3] flex items-center justify-center overflow-hidden">
+            <div class="absolute top-0 left-0 w-16 h-16"><div class="absolute -top-0.5 -left-0.5 w-8 h-8 border-t-[3px] border-l-[3px] border-b-blue rounded-tl-2xl"></div></div>
+            <div class="absolute bottom-0 right-0 w-16 h-16"><div class="absolute -bottom-0.5 -right-0.5 w-8 h-8 border-b-[3px] border-r-[3px] border-b-red rounded-br-2xl"></div></div>
+            <img src="bj.png" alt="Ball Joint — OEM Advanced" class="w-[70%] h-auto object-contain drop-shadow-lg">
+            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur border border-slate-200 rounded-xl px-3 py-2 shadow-sm">
+              <span class="font-display text-[7px] tracking-[1.5px] text-b-red font-bold block">OEM ADVANCED</span>
+              <span class="font-display text-[7px] tracking-wider text-b-blue block">LINE</span>
+            </div>
+            <div class="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white border-2 border-slate-200 shadow-md flex items-center justify-center">
+              <div class="text-center"><span class="block font-display text-[4px] tracking-wider text-slate-400 uppercase">Made in</span><span class="block font-display text-[6px] font-bold text-i-green">ITALY</span><div class="italy-strip h-[2px] w-5 mx-auto mt-0.5 rounded-full"></div></div>
+            </div>
+          </div>
         </div>
 
-        <!-- Article Code -->
-        <div class="flex items-center gap-4 bg-slate-50 rounded-xl px-5 py-3 border border-slate-200">
+        <!-- RIGHT: Data -->
+        <div class="space-y-5 fade-up fade-d2">
           <div>
-            <span class="font-display text-[9px] tracking-[1.5px] text-slate-400 uppercase block">Article No.</span>
-            <span class="font-display text-xl lg:text-2xl font-bold text-brand-blue tracking-wider">BJ-RE-1042</span>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[9px] tracking-[1.5px] px-3 py-1 rounded-md uppercase">Safety Critical</span>
+              <span class="bg-b-red/10 text-b-red font-display text-[9px] tracking-[1.5px] px-3 py-1 rounded-md font-bold">3 YEAR WARRANTY</span>
+            </div>
+            <h1 class="font-display text-2xl lg:text-[30px] text-b-blue-d uppercase tracking-wide leading-tight">Ball Joint</h1>
+            <p class="font-display text-sm text-slate-400 tracking-wider uppercase mt-1">OEM Advanced Line</p>
           </div>
-          <div class="ml-auto flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM17 14v3m0 3v-3m0 0h3m-3 0h-3"/></svg>
-            <span class="font-display text-[8px] tracking-wider text-brand-blue">QR SCAN</span>
+
+          <div class="flex items-center gap-4 bg-slate-50 rounded-xl px-5 py-3 border border-slate-200">
+            <div><span class="font-display text-[8px] tracking-[1.5px] text-slate-400 uppercase block">Article No.</span><span class="font-display text-xl font-bold text-b-blue tracking-wider">BJ-RE-1042</span></div>
+            <div class="ml-auto flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
+              <svg class="w-4 h-4 text-b-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM17 14v3m0 3v-3m0 0h3m-3 0h-3"/></svg>
+              <span class="font-display text-[7px] tracking-wider text-b-blue">QR SCAN</span>
+            </div>
           </div>
+
+          <p class="text-sm leading-relaxed text-slate-600 border-l-4 border-b-blue pl-4 bg-gradient-to-r from-b-blue/[.03] to-transparent py-3 rounded-r-lg">Induction-hardened <strong class="text-b-blue-d">42CrMo4</strong> alloy steel ball stud with POM plastic shell bearing and CR multi-lip hermetic dust cover. Engineered with a <strong class="text-b-blue-d">safety factor &gt; 3×</strong>, validated via FEA against OEM CAD data.</p>
+
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">1000</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">MPa</span></div>
+            <div class="bg-b-red/5 rounded-xl p-3 text-center border border-b-red/10"><span class="font-display text-lg font-bold text-b-red">500h+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Salt Spray</span></div>
+            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">10.9</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Grade HW</span></div>
+          </div>
+
+          <!-- CTA -->
+          <button @click="techOpen=!techOpen" class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[11px] tracking-[2px] uppercase py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-b-blue/20 transition-all active:scale-[0.98]" :class="!techOpen && 'cta-pulse'">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            <span x-text="techOpen?'Hide Technical Details':'View Technical Details'"></span>
+            <svg class="w-4 h-4 transition-transform duration-300" :class="techOpen && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
         </div>
-
-        <!-- Engineering Description -->
-        <p class="text-sm lg:text-[15px] leading-relaxed text-slate-600 border-l-4 border-brand-blue pl-4 bg-gradient-to-r from-brand-blue/[0.03] to-transparent py-3 rounded-r-lg">
-          Induction-hardened <strong class="text-brand-blue-dark">42CrMo4</strong> alloy steel ball stud with POM plastic shell bearing and CR multi-lip hermetic dust cover. Engineered with a <strong class="text-brand-blue-dark">safety factor &gt; 3×</strong>, validated via FEA against OEM CAD data. Designed for Corner Module kinematic integrity on xEV and ICE platforms.
-        </p>
-
-        <!-- Key Stats -->
-        <div class="grid grid-cols-3 gap-3">
-          <div class="bg-brand-blue-light/60 rounded-xl p-3 text-center border border-brand-blue/10">
-            <span class="font-display text-lg lg:text-xl font-bold text-brand-blue block leading-none">1000</span>
-            <span class="font-display text-[8px] tracking-wider text-slate-500 uppercase mt-1 block">MPa Tensile</span>
-          </div>
-          <div class="bg-brand-red/5 rounded-xl p-3 text-center border border-brand-red/10">
-            <span class="font-display text-lg lg:text-xl font-bold text-brand-red block leading-none">500h+</span>
-            <span class="font-display text-[8px] tracking-wider text-slate-500 uppercase mt-1 block">Salt Spray</span>
-          </div>
-          <div class="bg-brand-blue-light/60 rounded-xl p-3 text-center border border-brand-blue/10">
-            <span class="font-display text-lg lg:text-xl font-bold text-brand-blue block leading-none">10.9</span>
-            <span class="font-display text-[8px] tracking-wider text-slate-500 uppercase mt-1 block">Grade HW</span>
-          </div>
-        </div>
-
-        <!-- CTA — View Tech Details -->
-        <button id="ctaBtn" class="cta-pulse mt-2 w-full flex items-center justify-center gap-3 bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white font-display text-sm tracking-[2px] uppercase py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-brand-blue/20 transition-all active:scale-[0.98]">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-          <span>View Technical Details</span>
-          <svg id="ctaChevron" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </button>
-
       </div>
+
+      <!-- Expandable Tech Table -->
+      <div x-show="techOpen" x-collapse class="mt-8 fade-up">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center shadow-lg shadow-b-red/20"><span class="font-display text-xs text-white font-bold">02</span></div>
+            <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">Engineering Parameters</h2>
+            <span class="ml-auto hidden sm:inline-flex items-center gap-1 bg-i-green/10 text-i-green font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full font-bold">SAFETY > 3×</span>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-gradient-to-r from-b-blue to-b-blue-d"><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Material</td><td class="py-3 px-5 text-slate-600">42CrMo4 Induction Hardened Alloy Steel</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardness</td><td class="py-3 px-5 text-slate-600">58 – 62 HRC (Ball Stud Surface)</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Tensile Strength</td><td class="py-3 px-5 text-slate-600">1000 MPa Minimum</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Bearing</td><td class="py-3 px-5 text-slate-600">POM (Polyoxymethylene) — Low friction, maintenance-free</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Dust Cover</td><td class="py-3 px-5 text-slate-600">Chloroprene Rubber (CR) Multi-Lip Hermetic Seal</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Corrosion Defense</td><td class="py-3 px-5 text-slate-600">Zinc Flake / E-Coat — &gt;500h Salt Spray (ASTM B117)</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Safety Factor</td><td class="py-3 px-5"><span class="inline-flex items-center gap-1 bg-i-green/10 text-i-green font-display text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-md">&gt; 3× FEA Validated</span></td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardware Kit</td><td class="py-3 px-5 text-slate-600">Grade 10.9 Nut + Locking Bolt + Cotter Pin included</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">NVH Dampening</td><td class="py-3 px-5 text-slate-600">Application-specific Natural/Synthetic Rubber Blend</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Quality Check</td><td class="py-3 px-5 text-slate-600">100% Eddy Current / Magnetoscope on forged parts</td></tr>
+                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Design Concept</td><td class="py-3 px-5 text-slate-600">OE FIX — Direct Fit Replacement Upgrade Protocol</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs: OE / Vehicles -->
+      <div class="mt-10 fade-up fade-d3">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/15"><span class="font-display text-xs text-white font-bold">03</span></div>
+          <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">Cross-Reference & Applications</h2>
+        </div>
+        <div class="flex gap-0 border-b border-slate-200 mb-6">
+          <button @click="catTab='oe'" class="font-display text-[10px] tracking-[1.5px] uppercase px-5 py-3 transition-all" :class="catTab==='oe'?'tab-on':'tab-off'">OE Numbers</button>
+          <button @click="catTab='veh'" class="font-display text-[10px] tracking-[1.5px] uppercase px-5 py-3 transition-all" :class="catTab==='veh'?'tab-on':'tab-off'">Vehicle Fitment</button>
+        </div>
+
+        <div x-show="catTab==='oe'">
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-slate-50 border-b border-slate-200"><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400">OEM</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400">OE Reference</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400 hidden lg:table-cell">Position</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Renault</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
+                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Renault</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 026 72R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
+                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Nissan</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 000 Q0K</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
+                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Dacia</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div x-show="catTab==='veh'" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <template x-for="v in vehicles" :key="v.brand">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 hover:border-b-blue/30 hover:shadow-md transition-all">
+              <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1.5" x-text="v.brand"></h4>
+              <p class="text-xs text-slate-500 leading-relaxed" x-text="v.models"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- When to Replace -->
+      <div class="mt-10 fade-up fade-d4">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/15"><span class="font-display text-xs text-white font-bold">04</span></div>
+          <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">When to Replace</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <template x-for="w in warnings" :key="w.title">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-b-red/30 transition-all" :class="w.highlight && 'bg-b-blue-l/30 border-b-blue/20'">
+              <div class="w-9 h-9 mx-auto mb-2 rounded-xl flex items-center justify-center" :class="w.highlight ? 'bg-b-blue/10' : 'bg-b-red/10'">
+                <svg class="w-4 h-4" :class="w.highlight ? 'text-b-blue' : 'text-b-red'" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path :d="w.icon"/></svg>
+              </div>
+              <h4 class="font-display text-[8px] tracking-wider text-b-blue-d uppercase font-bold mb-1" x-text="w.title"></h4>
+              <p class="text-[11px] leading-relaxed" :class="w.highlight ? 'text-b-blue font-semibold' : 'text-slate-500'" x-text="w.desc"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-
-<!-- ═══════════════════════════════════════════════
-     INTERACTIVE TECH SPECS — Accordion
-     ═══════════════════════════════════════════════ -->
-<section id="tech-specs">
-  <div id="techPanel" class="accordion-body">
-    <div class="bg-gradient-to-b from-slate-50 to-white border-t border-slate-200">
-      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-14">
-
-        <!-- Section Header -->
-        <div class="flex items-center gap-4 mb-8">
-          <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-brand-red to-brand-red-dark rounded-xl shadow-lg shadow-brand-red/20">
-            <span class="font-display text-sm font-bold text-white">02</span>
-          </div>
-          <div>
-            <h2 class="font-display text-lg lg:text-xl font-bold text-brand-blue-dark uppercase tracking-wide">Engineering Parameters</h2>
-            <p class="font-body text-xs text-slate-400 tracking-wide">OEM Advanced Line — Full Technical Specification</p>
-          </div>
-          <span class="ml-auto hidden lg:inline-flex items-center gap-1.5 bg-italy-green/10 text-italy-green font-display text-[9px] tracking-wider px-3 py-1.5 rounded-full font-bold">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-            SAFETY FACTOR > 3×
-          </span>
-        </div>
-
-        <!-- Tech Table -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-          <table class="tech-table w-full text-sm">
-            <thead>
-              <tr class="bg-gradient-to-r from-brand-blue to-brand-blue-dark">
-                <th class="text-left py-3 px-5 font-display text-[10px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th>
-                <th class="text-left py-3 px-5 font-display text-[10px] tracking-[2px] uppercase text-white/80">Specification</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Material</td>
-                <td class="py-3.5 px-5 text-slate-600">42CrMo4 Induction Hardened Alloy Steel</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Hardness</td>
-                <td class="py-3.5 px-5 text-slate-600">58 – 62 HRC (Ball Stud Surface)</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Tensile Strength</td>
-                <td class="py-3.5 px-5 text-slate-600">1000 MPa Minimum</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Bearing</td>
-                <td class="py-3.5 px-5 text-slate-600">POM (Polyoxymethylene) Plastic Shell — Low friction, maintenance-free</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Dust Cover</td>
-                <td class="py-3.5 px-5 text-slate-600">Chloroprene Rubber (CR) Multi-Lip Hermetic Seal</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Corrosion Defense</td>
-                <td class="py-3.5 px-5 text-slate-600">Premium Zinc Flake / E-Coat — &gt;500h Salt Spray (ASTM B117)</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Safety Factor</td>
-                <td class="py-3.5 px-5">
-                  <span class="inline-flex items-center gap-1.5 bg-italy-green/10 text-italy-green font-display text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-md">&gt; 3× FEA Validated</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Hardware Kit</td>
-                <td class="py-3.5 px-5 text-slate-600">Grade 10.9 Nut + Locking Bolt + Cotter Pin — All included</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">NVH Dampening</td>
-                <td class="py-3.5 px-5 text-slate-600">Application-specific Natural/Synthetic Rubber Blend</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Quality Check</td>
-                <td class="py-3.5 px-5 text-slate-600">100% Eddy Current / Magnetoscope on all forged parts</td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-5 font-display text-xs font-bold text-brand-blue-dark tracking-wide uppercase">Design Concept</td>
-                <td class="py-3.5 px-5 text-slate-600">OE FIX — Direct Fit Replacement Upgrade Protocol</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Sub-info row -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
-          <div class="flex items-center gap-3 bg-brand-blue-light/50 rounded-xl px-4 py-3 border border-brand-blue/8">
-            <svg class="w-5 h-5 text-brand-blue shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-            <span class="font-display text-[9px] tracking-wider text-brand-blue-dark uppercase leading-tight">Corner Module<br>Engineering</span>
-          </div>
-          <div class="flex items-center gap-3 bg-brand-red/5 rounded-xl px-4 py-3 border border-brand-red/8">
-            <svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
-            <span class="font-display text-[9px] tracking-wider text-brand-blue-dark uppercase leading-tight">xEV Platform<br>Ready</span>
-          </div>
-          <div class="flex items-center gap-3 bg-brand-blue-light/50 rounded-xl px-4 py-3 border border-brand-blue/8">
-            <svg class="w-5 h-5 text-brand-blue shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            <span class="font-display text-[9px] tracking-wider text-brand-blue-dark uppercase leading-tight">OEM CAD<br>Validated</span>
-          </div>
-          <div class="flex items-center gap-3 bg-italy-green/5 rounded-xl px-4 py-3 border border-italy-green/10">
-            <svg class="w-5 h-5 text-italy-green shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V10L12 2 2 10v12zm9-4.5V14h2v3.5h3L12 21l-4-3.5h3z"/></svg>
-            <span class="font-display text-[9px] tracking-wider text-brand-blue-dark uppercase leading-tight">Assembled<br>in Italy</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════
-     OE CROSS-REFERENCE & APPLICATIONS — Tabs
-     ═══════════════════════════════════════════════ -->
-<section id="cross-ref" class="border-t border-slate-100">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-14">
-
-    <!-- Section Header -->
-    <div class="flex items-center gap-4 mb-6">
-      <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-blue-dark rounded-xl shadow-lg shadow-brand-blue/15">
-        <span class="font-display text-sm font-bold text-white">03</span>
-      </div>
-      <h2 class="font-display text-lg lg:text-xl font-bold text-brand-blue-dark uppercase tracking-wide">Cross-Reference & Applications</h2>
-    </div>
-
-    <!-- Tabs -->
-    <div class="flex gap-0 border-b border-slate-200 mb-6">
-      <button onclick="switchTab('oe')" id="tab-oe" class="tab-active font-display text-[11px] tracking-[1.5px] uppercase px-5 py-3 transition-all">OE Numbers</button>
-      <button onclick="switchTab('vehicles')" id="tab-vehicles" class="tab-inactive font-display text-[11px] tracking-[1.5px] uppercase px-5 py-3 transition-all">Vehicle Fitment</button>
-    </div>
-
-    <!-- Tab Content: OE Numbers -->
-    <div id="content-oe" class="block">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="bg-slate-50 border-b border-slate-200">
-              <th class="text-left py-3 px-5 font-display text-[10px] tracking-[2px] uppercase text-slate-400">OEM</th>
-              <th class="text-left py-3 px-5 font-display text-[10px] tracking-[2px] uppercase text-slate-400">OE Reference</th>
-              <th class="text-left py-3 px-5 font-display text-[10px] tracking-[2px] uppercase text-slate-400 hidden lg:table-cell">Position</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-brand-blue-light/30 transition-colors">
-              <td class="py-3 px-5 font-semibold text-brand-blue-dark">Renault</td>
-              <td class="py-3 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td>
-              <td class="py-3 px-5 text-slate-500 hidden lg:table-cell">Front Lower — Left/Right</td>
-            </tr>
-            <tr class="hover:bg-brand-blue-light/30 transition-colors">
-              <td class="py-3 px-5 font-semibold text-brand-blue-dark">Renault</td>
-              <td class="py-3 px-5 font-mono text-sm text-slate-600">40 16 026 72R</td>
-              <td class="py-3 px-5 text-slate-500 hidden lg:table-cell">Front Lower — Left/Right</td>
-            </tr>
-            <tr class="hover:bg-brand-blue-light/30 transition-colors">
-              <td class="py-3 px-5 font-semibold text-brand-blue-dark">Nissan</td>
-              <td class="py-3 px-5 font-mono text-sm text-slate-600">40 16 000 Q0K</td>
-              <td class="py-3 px-5 text-slate-500 hidden lg:table-cell">Front Lower — Left/Right</td>
-            </tr>
-            <tr class="hover:bg-brand-blue-light/30 transition-colors">
-              <td class="py-3 px-5 font-semibold text-brand-blue-dark">Dacia</td>
-              <td class="py-3 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td>
-              <td class="py-3 px-5 text-slate-500 hidden lg:table-cell">Front Lower — Left/Right</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Tab Content: Vehicles -->
-    <div id="content-vehicles" class="hidden">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Vehicle Card -->
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">Renault</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Clio IV (2012–2019), Clio V (2019–), Captur I/II, Megane III/IV, Scenic III/IV, Kadjar, Koleos II</p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">Dacia</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Sandero II/III, Logan II/III, Duster II, Jogger (2021–)</p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">Nissan</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Qashqai J11/J12, X-Trail T32, Juke F16, Micra K14</p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-red/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">Maserati</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Levante (2016–), Grecale (2022–) — OE Tier-1 Supplier</p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-red/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">McLaren</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Selected models — OE Tier-1 Supplier</p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            </div>
-            <h4 class="font-display text-xs font-bold text-brand-blue-dark uppercase tracking-wide">INEOS / CNH / IVECO</h4>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed">Selected commercial & utility vehicle platforms</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════
-     REPLACEMENT GUIDELINES
-     ═══════════════════════════════════════════════ -->
-<section id="applications" class="bg-gradient-to-b from-slate-50 to-white border-t border-slate-100">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-14">
-    <div class="flex items-center gap-4 mb-6">
-      <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-blue-dark rounded-xl shadow-lg shadow-brand-blue/15">
-        <span class="font-display text-sm font-bold text-white">04</span>
-      </div>
-      <h2 class="font-display text-lg lg:text-xl font-bold text-brand-blue-dark uppercase tracking-wide">When to Replace</h2>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-      <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-brand-red/30 transition-all">
-        <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-brand-red/10 flex items-center justify-center">
-          <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
-        </div>
-        <h4 class="font-display text-[10px] tracking-wider text-brand-blue-dark uppercase font-bold mb-1">Unusual Noise</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Clunking, knocking or vibrations during steering</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-brand-red/30 transition-all">
-        <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-brand-red/10 flex items-center justify-center">
-          <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <h4 class="font-display text-[10px] tracking-wider text-brand-blue-dark uppercase font-bold mb-1">Visual Check</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Cracked or leaking rubber boots</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-brand-red/30 transition-all">
-        <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-brand-red/10 flex items-center justify-center">
-          <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061A1.125 1.125 0 013 16.811V8.69z"/><path d="M12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061a1.125 1.125 0 01-1.683-.977V8.69z"/></svg>
-        </div>
-        <h4 class="font-display text-[10px] tracking-wider text-brand-blue-dark uppercase font-bold mb-1">Drifting</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Vehicle pulls left or right, loose steering</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-brand-red/30 transition-all">
-        <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-brand-red/10 flex items-center justify-center">
-          <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M11.42 15.17l-5.657-5.657a2.121 2.121 0 113 -3l5.657 5.657a8 8 0 01-2.999 3"/><path d="M15.75 4.5l-3 3"/></svg>
-        </div>
-        <h4 class="font-display text-[10px] tracking-wider text-brand-blue-dark uppercase font-bold mb-1">After Impact</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Curb hits, potholes, or road debris</p>
-      </div>
-      <div class="bg-white rounded-xl border border-brand-blue/20 p-4 text-center bg-brand-blue-light/30">
-        <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-brand-blue/10 flex items-center justify-center">
-          <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h4 class="font-display text-[10px] tracking-wider text-brand-blue-dark uppercase font-bold mb-1">Interval</h4>
-        <p class="text-xs text-brand-blue font-semibold leading-relaxed">60,000 km or 36 months</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 </main>
 
-
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════ -->
-<footer class="bg-brand-blue-deep text-white">
-  <!-- Italy strip -->
-  <div class="italy-strip h-1 w-full"></div>
-
+<!-- ████████ FOOTER ████████ -->
+<footer class="bg-b-blue-dp text-white">
+  <div class="italy-strip h-[3px] w-full"></div>
   <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
     <div class="grid lg:grid-cols-3 gap-8 items-center">
-
-      <!-- Left — Logo + Address -->
       <div>
-        <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-9 w-auto mb-4 brightness-0 invert opacity-90">
-        <p class="text-sm text-white/60 leading-relaxed">Via Volvera 112<br>10090 Bruino (TO) — ITALY</p>
+        <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-8 w-auto mb-4 brightness-0 invert opacity-90">
+        <p class="text-sm text-white/50 leading-relaxed">Via Volvera 112<br>10090 Bruino (TO) — ITALY</p>
       </div>
-
-      <!-- Center — Certifications -->
-      <div class="flex flex-wrap justify-center gap-3">
-        <span class="inline-flex items-center gap-1.5 border border-white/15 text-white/70 font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full">IATF 16949</span>
-        <span class="inline-flex items-center gap-1.5 border border-white/15 text-white/70 font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full">ISO 9001</span>
-        <span class="inline-flex items-center gap-1.5 border border-white/15 text-white/70 font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full">ISO 14001</span>
-        <span class="inline-flex items-center gap-1.5 border border-white/15 text-white/70 font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full">ISO 45001</span>
+      <div class="flex flex-wrap justify-center gap-2">
+        <template x-for="c in ['IATF 16949','ISO 9001','ISO 14001','ISO 45001']">
+          <span class="border border-white/15 text-white/60 font-display text-[7px] tracking-wider px-3 py-1.5 rounded-full" x-text="c"></span>
+        </template>
       </div>
-
-      <!-- Right — Links -->
       <div class="lg:text-right">
-        <a href="https://www.frap.it" target="_blank" class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm font-semibold">
+        <a href="https://www.frap.it" target="_blank" class="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-semibold">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg>
           www.frap.it
         </a>
-        <p class="text-xs text-white/30 mt-4 font-display tracking-wider">&copy; 2026 EXEDY FRAP Automotive. All Rights Reserved.</p>
+        <p class="text-xs text-white/25 mt-3 font-display tracking-wider">&copy; 2026 EXEDY FRAP Automotive. All Rights Reserved.</p>
       </div>
-
     </div>
   </div>
 </footer>
 
-
-<!-- ═══════════════════════════════════════════════
-     JAVASCRIPT
-     ═══════════════════════════════════════════════ -->
 <script>
-// Sticky header shadow
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('header-scrolled', window.scrollY > 10);
-});
-
-// Mobile menu
-const menuBtn = document.getElementById('menuBtn');
-const closeMenuBtn = document.getElementById('closeMenu');
-const mobileMenu = document.getElementById('mobileMenu');
-
-menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-closeMenuBtn.addEventListener('click', closeMobileMenu);
-function closeMobileMenu() { mobileMenu.classList.remove('open'); }
-
-// Tech Specs Accordion
-const ctaBtn = document.getElementById('ctaBtn');
-const techPanel = document.getElementById('techPanel');
-const ctaChevron = document.getElementById('ctaChevron');
-let techOpen = false;
-
-ctaBtn.addEventListener('click', () => {
-  techOpen = !techOpen;
-  if (techOpen) {
-    techPanel.style.maxHeight = techPanel.scrollHeight + 'px';
-    techPanel.classList.add('open');
-    ctaChevron.style.transform = 'rotate(180deg)';
-    ctaBtn.classList.remove('cta-pulse');
-    setTimeout(() => {
-      document.getElementById('tech-specs').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  } else {
-    techPanel.style.maxHeight = '0';
-    techPanel.classList.remove('open');
-    ctaChevron.style.transform = 'rotate(0deg)';
-  }
-});
-
-// Tabs
-function switchTab(tab) {
-  const tabs = ['oe', 'vehicles'];
-  tabs.forEach(t => {
-    document.getElementById('tab-' + t).className = t === tab ? 'tab-active font-display text-[11px] tracking-[1.5px] uppercase px-5 py-3 transition-all' : 'tab-inactive font-display text-[11px] tracking-[1.5px] uppercase px-5 py-3 transition-all';
-    document.getElementById('content-' + t).className = t === tab ? 'block' : 'hidden';
-  });
-}
+function app(){return{
+  active:'home',scrolled:false,mobOpen:false,techOpen:false,catTab:'oe',activeLine:'oem',
+  sections:[{id:'home',label:'Home'},{id:'portfolio',label:'Portfolio'},{id:'quality',label:'Quality'},{id:'catalog',label:'Catalog'}],
+  lines:[
+    {id:'oem',label:'OEM Advanced',activeClass:'border-b-blue bg-b-blue-l text-b-blue'},
+    {id:'bull',label:'Bull Series',activeClass:'border-bull bg-bull-l text-bull'},
+    {id:'rosso',label:'FRAP Rosso',activeClass:'border-rosso bg-rosso-l text-rosso-d'},
+    {id:'adj',label:'Adjustable',activeClass:'border-adj bg-adj-l text-adj-d'}
+  ],
+  vehicles:[
+    {brand:'Renault',models:'Clio IV/V, Captur I/II, Megane III/IV, Scenic III/IV, Kadjar, Koleos II'},
+    {brand:'Dacia',models:'Sandero II/III, Logan II/III, Duster II, Jogger (2021–)'},
+    {brand:'Nissan',models:'Qashqai J11/J12, X-Trail T32, Juke F16, Micra K14'},
+    {brand:'Maserati',models:'Levante (2016–), Grecale (2022–) — OE Tier-1'},
+    {brand:'McLaren',models:'Selected models — OE Tier-1 Supplier'},
+    {brand:'INEOS / CNH / IVECO',models:'Selected commercial & utility platforms'}
+  ],
+  warnings:[
+    {title:'Unusual Noise',desc:'Clunking, knocking during steering',icon:'M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z'},
+    {title:'Visual Check',desc:'Cracked or leaking boots',icon:'M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'},
+    {title:'Drifting',desc:'Vehicle pulls left or right',icon:'M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5'},
+    {title:'After Impact',desc:'Curb hits or potholes',icon:'M11.42 15.17l-5.657-5.657a8 8 0 1111.314 0l-5.657 5.657z'},
+    {title:'60,000 km / 36 mo',desc:'Recommended service interval',icon:'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',highlight:true}
+  ],
+  go(id){this.active=id;this.techOpen=false;window.scrollTo({top:0,behavior:'smooth'})}
+}}
 </script>
 
 </body>
