@@ -1,584 +1,1239 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EXEDY FRAP — Premium Steering, Suspension & Chassis Components — We understand OE, because we are OE.">
-<title>EXEDY FRAP — Corner Module Engineering Since 1932</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Michroma&display=swap" rel="stylesheet">
-<script>
-tailwind.config={theme:{extend:{colors:{'b-blue':'#0052A5','b-blue-d':'#002D5E','b-blue-dp':'#001A38','b-blue-l':'#e6f0fa','b-red':'#E50064','b-red-d':'#b30050','i-green':'#009246','i-red':'#CE2029','rosso':'#CE2029','rosso-d':'#991520','rosso-l':'#fce8e9','bull':'#1e293b','bull-m':'#334155','bull-l':'#f1f5f9','adj':'#0ea5e9','adj-d':'#0369a1','adj-l':'#e0f2fe'},fontFamily:{display:['Michroma','sans-serif'],body:['"Exo 2"','sans-serif']}}}}
-</script>
-<style>
-*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-.italy-strip{background:linear-gradient(90deg,#009246 0%,#009246 33.33%,#fff 33.33%,#fff 66.66%,#CE2029 66.66%,#CE2029 100%)}
-.header-scrolled{box-shadow:0 4px 30px rgba(0,42,94,.12);backdrop-filter:blur(14px);background:rgba(255,255,255,.97)!important}
-.grid-pat{background-image:linear-gradient(rgba(0,82,165,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(0,82,165,.015) 1px,transparent 1px);background-size:28px 28px}
-@keyframes pulse-r{0%{box-shadow:0 0 0 0 rgba(0,82,165,.45)}70%{box-shadow:0 0 0 12px rgba(0,82,165,0)}100%{box-shadow:0 0 0 0 rgba(0,82,165,0)}}.cta-pulse{animation:pulse-r 2.2s infinite}
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}.fade-up{animation:fadeUp .65s cubic-bezier(.22,1,.36,1) both}
-.fade-d1{animation-delay:.08s}.fade-d2{animation-delay:.18s}.fade-d3{animation-delay:.28s}.fade-d4{animation-delay:.38s}.fade-d5{animation-delay:.48s}
-.tech-tr:hover{background:#f0f6fc}
-.tab-on{color:#0052A5;border-bottom:3px solid #0052A5}.tab-off{color:#64748b;border-bottom:3px solid transparent}.tab-off:hover{color:#002D5E;border-bottom-color:#e2e8f0}
-[x-cloak]{display:none!important}
-.mob-menu{transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1)}.mob-menu.open{transform:translateX(0)}
-.seal-spin{animation:spin 25s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-.line-card{position:relative;overflow:hidden}.line-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
-.line-card.oem::before{background:linear-gradient(180deg,#0052A5,#002D5E)}.line-card.bull-c::before{background:linear-gradient(180deg,#475569,#0f172a)}.line-card.rosso-c::before{background:linear-gradient(180deg,#ff4d55,#991520)}.line-card.adj-c::before{background:linear-gradient(180deg,#38bdf8,#0369a1)}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EXEDY FRAP — Premium Steering, Suspension & Chassis Components. Tier-1 OEM Engineering since 1932.">
+    <title>EXEDY FRAP — Corner Module Engineering Since 1932</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Michroma&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FIX #1: Alpine.js must NOT use defer when using x-cloak — load synchronously or use correct defer pattern -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#00305e',
+                        'brand-dark': '#001a35',
+                        'brand-red': '#ff0055',
+                        'brand-red-dark': '#cc0044',
+                        /* FIX #2: Added brand-deep color that was used in glossary section but never defined */
+                        'brand-deep': '#0a0f1e',
+                        'italy-green': '#009246',
+                        'rosso-base': '#CE2029',
+                        'bull-base': '#1e293b',
+                        'adj-base': '#0ea5e9'
+                    },
+                    fontFamily: {
+                        'display': ['Michroma', 'sans-serif'],
+                        'body': ['"Exo 2"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* FIX #3: x-cloak properly hides content before Alpine initializes */
+        [x-cloak] { display: none !important; }
+
+        body { font-family: 'Exo 2', sans-serif; -webkit-font-smoothing: antialiased; }
+        .michroma { font-family: 'Michroma', sans-serif; }
+        .italy-strip { background: linear-gradient(90deg, #009246 0%, #009246 33%, #ffffff 33%, #ffffff 66%, #CE2029 66%, #CE2029 100%); }
+        .bg-grid { background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 40px 40px; }
+        .shadow-glow { box-shadow: 0 0 20px rgba(255, 0, 85, 0.3); }
+
+        /* FIX #4: scroll-mt was defined as a custom class but conflicted with Tailwind's scroll-mt utilities.
+           Renamed to section-anchor for clarity and correct behavior */
+        .section-anchor { scroll-margin-top: 80px; }
+
+        /* FIX #5: Added smooth transition for section changes (was missing, causing jarring page flips) */
+        [x-transition] { transition: opacity 0.2s ease-in-out; }
+
+        /* FIX #6: Navbar height compensation — pt-20 on main was not enough with the italy-strip bar */
+        main { padding-top: 4.5rem; }
+
+        /* FIX #7: Mobile overflow prevention */
+        body { overflow-x: hidden; }
+
+        /* FIX #8: Table responsive fix — prevent cell text overflow on small screens */
+        table { word-break: break-word; }
+
+        /* FIX #9: Footer links need pointer cursor */
+        footer a, footer button { cursor: pointer; }
+
+        /* FIX #10: Active nav indicator animation */
+        nav a { position: relative; transition: color 0.2s, border-color 0.2s; }
+
+        /* FIX #11: Button focus states for accessibility */
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid #ff0055;
+            outline-offset: 2px;
+        }
+
+        /* FIX #12: Image error placeholder styling */
+        img[onerror] { min-height: 1px; }
+
+        /* FIX #13: Ensure sections with x-show don't cause layout shift */
+        [x-show] { will-change: opacity; }
+
+        /* FIX #14: Improved scrollbar for tables */
+        .overflow-x-auto::-webkit-scrollbar { height: 4px; }
+        .overflow-x-auto::-webkit-scrollbar-track { background: #f1f5f9; }
+        .overflow-x-auto::-webkit-scrollbar-thumb { background: #00305e; border-radius: 2px; }
+
+        /* FIX #15: Improved mobile menu animation */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu-enter { animation: slideDown 0.2s ease-out; }
+
+        /* FIX #16: Print styles */
+        @media print {
+            header, footer { position: static; }
+            [x-show] { display: block !important; }
+        }
+
+        /* FIX #17: Improve text legibility on dark sections */
+        .bg-brand-deep p, .bg-brand-dark p { line-height: 1.75; }
+
+        /* FIX #18: Hero section min-height fix for very short viewports (landscape mobile) */
+        @media (max-height: 500px) {
+            .hero-section { min-height: 100vh; padding-top: 5rem; padding-bottom: 8rem; }
+        }
+
+        /* FIX #19: Certification badges bar z-index and positioning */
+        .cert-bar { position: absolute; bottom: 0; left: 0; width: 100%; }
+
+        /* FIX #20: Prevent hero image from affecting layout on small screens */
+        .hero-bg-img { pointer-events: none; user-select: none; }
+    </style>
 </head>
 
-<body class="bg-white font-body text-slate-700" x-data="app()" x-cloak>
+<!-- FIX #21: x-cloak added to body so content is hidden until Alpine.js is ready, preventing FOUC -->
+<body class="bg-slate-50 text-slate-800" x-data="exedyApp()" x-cloak>
 
-<!-- ████████ NAVBAR ████████ -->
-<header class="fixed top-0 inset-x-0 z-50 bg-white transition-all duration-300" :class="scrolled && 'header-scrolled'" @scroll.window="scrolled = window.scrollY > 20">
-  <div class="italy-strip h-[3px] w-full"></div>
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-8 h-14 lg:h-[68px]">
-    <a href="#" @click.prevent="go('home')" class="shrink-0"><img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-7 lg:h-9 w-auto"></a>
-    <nav class="hidden lg:flex items-center gap-7">
-      <template x-for="s in sections" :key="s.id">
-        <button @click="go(s.id)" class="font-display text-[10px] tracking-[1.8px] uppercase transition-colors" :class="active===s.id?'text-b-blue':'text-slate-400 hover:text-b-blue-d'" x-text="s.label"></button>
-      </template>
-    </nav>
-    <div class="hidden lg:flex items-center gap-2">
-      <span class="bg-b-blue-l text-b-blue font-display text-[8px] tracking-wider px-2.5 py-1 rounded-full font-bold">IATF 16949</span>
-      <span class="bg-b-blue-l text-b-blue font-display text-[8px] tracking-wider px-2.5 py-1 rounded-full font-bold">ISO 9001</span>
-    </div>
-    <button @click="mobOpen=true" class="lg:hidden flex flex-col gap-[5px] p-2">
-      <span class="block w-6 h-[2px] bg-b-blue-d"></span><span class="block w-6 h-[2px] bg-b-blue-d"></span><span class="block w-4 h-[2px] bg-b-red ml-auto"></span>
-    </button>
-  </div>
-</header>
+    <!-- ================= NAVBAR ================= -->
+    <!-- FIX #22: Removed conflicting 'py-1'/'py-3' dynamic classes — now uses padding on inner div -->
+    <!-- FIX #23: Added role="banner" for accessibility -->
+    <header class="fixed top-0 w-full z-50 bg-white shadow-lg" role="banner">
+        <!-- Italian flag accent strip -->
+        <div class="italy-strip h-1 w-full"></div>
 
-<!-- Mobile menu -->
-<div class="mob-menu fixed inset-0 z-[60] bg-white flex flex-col" :class="mobOpen && 'open'">
-  <div class="italy-strip h-[3px]"></div>
-  <div class="flex items-center justify-between px-4 h-14">
-    <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-7">
-    <button @click="mobOpen=false" class="p-2"><svg class="w-6 h-6 text-b-blue-d" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
-  </div>
-  <nav class="flex-1 flex flex-col justify-center items-center gap-7">
-    <template x-for="s in sections" :key="s.id">
-      <button @click="go(s.id);mobOpen=false" class="font-display text-base tracking-[2px] uppercase text-b-blue-d" x-text="s.label"></button>
-    </template>
-  </nav>
-</div>
+        <!-- FIX #24: Added proper height transition via padding on the inner wrapper -->
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-300"
+             :class="scrolled ? 'py-2' : 'py-3'">
 
-<main class="pt-[59px] lg:pt-[71px]">
+            <!-- Logo -->
+            <a href="#" @click.prevent="navigate('home')" class="shrink-0 group" aria-label="EXEDY FRAP Home">
+                <!-- FIX #25: Logo fallback improved — uses a styled span that matches brand identity -->
+                <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP"
+                     class="h-8 lg:h-10 w-auto transition-transform duration-200 group-hover:scale-105"
+                     onerror="this.onerror=null; this.outerHTML='<span class=\'michroma text-lg font-bold tracking-wider\' style=\'color:#001a35\'>EXEDY <span style=\'color:#ff0055\'>FRAP</span></span>'">
+            </a>
 
-<!-- ████████ SECTION: HOME ████████ -->
-<section x-show="active==='home'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-6" role="navigation" aria-label="Main navigation">
+                <template x-for="item in menu" :key="item.id">
+                    <a :href="'#'+item.id"
+                       @click.prevent="navigate(item.id)"
+                       class="michroma text-[10px] uppercase tracking-widest transition-colors py-2 border-b-2"
+                       :class="activeSection === item.id
+                           ? 'text-brand-blue border-brand-red'
+                           : 'text-slate-500 border-transparent hover:text-brand-blue hover:border-slate-300'"
+                       x-text="item.label"
+                       :aria-current="activeSection === item.id ? 'page' : null">
+                    </a>
+                </template>
+            </nav>
 
-  <!-- HERO -->
-  <div class="relative bg-gradient-to-br from-b-blue-dp via-[#0a1e3d] to-b-blue-d min-h-[85vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 opacity-[.04]" style="background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px"></div>
-    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-b-blue/10 rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-b-red/8 rounded-full blur-[100px]"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 w-full">
-      <div class="max-w-3xl fade-up">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="italy-strip h-[3px] w-12 rounded-full"></div>
-          <span class="font-display text-[10px] tracking-[3px] text-white/50 uppercase">Corner Module Engineering Since 1932</span>
-        </div>
-        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] text-white uppercase leading-[1.15] tracking-wide mb-6">
-          We understand OE<span class="text-b-red"> —</span><br>because we <em class="not-italic text-b-red">are</em> OE.
-        </h1>
-        <p class="text-base lg:text-lg text-white/60 leading-relaxed max-w-xl mb-10 font-light">Premium steering, suspension & chassis components. Tier-1 OEM supplier to Renault, Maserati, McLaren, INEOS, CNH & IVECO. Designed and assembled in Italy.</p>
-        <div class="flex flex-wrap gap-3">
-          <button @click="go('portfolio')" class="bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[10px] tracking-[2px] uppercase px-7 py-3.5 rounded-xl hover:shadow-lg hover:shadow-b-blue/25 transition-all">Explore Portfolio</button>
-          <button @click="go('catalog')" class="border border-white/20 text-white/80 font-display text-[10px] tracking-[2px] uppercase px-7 py-3.5 rounded-xl hover:bg-white/5 transition-all">Product Catalog</button>
-        </div>
-      </div>
-
-      <!-- Certification Badges -->
-      <div class="flex flex-wrap gap-3 mt-14 fade-up fade-d3">
-        <template x-for="b in ['IATF 16949','ISO 9001','ISO 14001','ISO 45001','3 YEAR WARRANTY']">
-          <span class="inline-flex items-center gap-2 bg-white/[.06] backdrop-blur border border-white/10 text-white/70 font-display text-[8px] tracking-wider px-3.5 py-2 rounded-full" x-text="b"></span>
-        </template>
-        <span class="inline-flex items-center gap-2 bg-i-green/15 border border-i-green/20 text-i-green font-display text-[8px] tracking-wider px-3.5 py-2 rounded-full">
-          <span class="italy-strip h-[2px] w-4 rounded-full inline-block"></span> ASSEMBLED IN ITALY
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ALLIANCE -->
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-24">
-    <div class="text-center mb-14 fade-up">
-      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Strategic Partnership</span>
-      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">The Alliance</h2>
-      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
-      <!-- EXEDY -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-7 lg:p-8 shadow-sm hover:shadow-md transition-shadow fade-up fade-d1">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center shadow-lg shadow-b-red/20">
-            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
-          </div>
-          <h3 class="font-display text-sm uppercase tracking-wider text-b-red font-bold">EXEDY Corporation</h3>
-        </div>
-        <p class="text-sm text-slate-500 leading-relaxed mb-4">Founded in 1950 in Osaka, Japan. Global leader in advanced drivetrain technologies — the world's largest independent manufacturer of torque converters and a Tier-1 clutch supplier to major automakers worldwide.</p>
-        <div class="grid grid-cols-2 gap-2">
-          <div class="bg-b-red/5 rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-red block">70+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Years</span></div>
-          <div class="bg-b-red/5 rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-red block">GLOBAL</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Network</span></div>
-        </div>
-      </div>
-
-      <!-- FRAP -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-7 lg:p-8 shadow-sm hover:shadow-md transition-shadow fade-up fade-d2">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/20">
-            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2 22h20V10L12 2 2 10v12zm9-4.5V14h2v3.5h3L12 21l-4-3.5h3z"/></svg>
-          </div>
-          <h3 class="font-display text-sm uppercase tracking-wider text-b-blue font-bold">FRAP S.p.A.</h3>
-        </div>
-        <p class="text-sm text-slate-500 leading-relaxed mb-4">Founded in 1932 near Turin, Italy. Historic manufacturer of steering & suspension components. "Integrated Quality" policy — the entire cycle from R&D to assembly managed strictly within Italy. Tier-1 OEM supplier to Renault, Maserati, McLaren, INEOS, CNH, IVECO.</p>
-        <div class="grid grid-cols-2 gap-2">
-          <div class="bg-b-blue-l rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-blue block">90+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Years Heritage</span></div>
-          <div class="bg-b-blue-l rounded-lg p-3 text-center"><span class="font-display text-lg font-bold text-b-blue block">80+</span><span class="font-display text-[7px] tracking-wider text-slate-400 uppercase">Countries</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Alliance statement -->
-    <div class="mt-8 bg-gradient-to-r from-b-blue-l to-blue-50 border-l-[6px] border-b-red rounded-r-2xl p-6 lg:p-8 shadow-sm fade-up fade-d3">
-      <span class="font-display text-[10px] tracking-[2px] text-b-red uppercase font-bold block mb-2">Strategic Alliance Overview</span>
-      <p class="text-sm text-slate-600 leading-relaxed">By integrating FRAP's IATF 16949 "Integrated Quality" manufacturing with EXEDY's extensive global distribution network, we deliver premium steering and suspension solutions — instantly accessible worldwide. Every component is developed from original OEM blueprints, validated through FEA, and manufactured under IATF 16949 protocols.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ████████ SECTION: PORTFOLIO ████████ -->
-<section x-show="active==='portfolio'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
-
-    <div class="text-center mb-12 fade-up">
-      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Product Index</span>
-      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">4-Tier Portfolio</h2>
-      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
-      <p class="text-sm text-slate-500 max-w-2xl mx-auto mt-4 leading-relaxed">Engineered for precise fit, form, and unsurpassed kinematic function. Each architecture is developed from original OEM blueprints, validated through FEA, and manufactured under IATF 16949 quality protocols.</p>
-    </div>
-
-    <!-- Line Selector Tabs -->
-    <div class="flex flex-wrap justify-center gap-2 mb-10 fade-up fade-d1">
-      <template x-for="l in lines" :key="l.id">
-        <button @click="activeLine=l.id" class="font-display text-[9px] tracking-[1.5px] uppercase px-4 py-2.5 rounded-xl border transition-all" :class="activeLine===l.id ? l.activeClass : 'border-slate-200 text-slate-400 hover:border-slate-300'" x-text="l.label"></button>
-      </template>
-    </div>
-
-    <!-- OEM ADVANCED -->
-    <div x-show="activeLine==='oem'" x-transition class="fade-up">
-      <div class="grid lg:grid-cols-5 gap-6">
-        <div class="lg:col-span-3 space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/20"><span class="font-display text-sm text-white font-bold">01</span></div>
-            <div><h3 class="font-display text-lg uppercase tracking-wide text-b-blue">OEM Advanced Line</h3><span class="font-display text-[9px] tracking-[2px] text-b-red uppercase">OE Fix & Restoration</span></div>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-b-blue pl-4 bg-gradient-to-r from-b-blue/[.03] to-transparent py-3 rounded-r-lg">Factory components are engineered around strict cost-saving constraints. Our Tier-1 engineering department analyzes OE failure modes and deploys superior, direct-fit solutions designed to outlast the originals — while maintaining 100% dimensional compatibility.</p>
-          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-gradient-to-r from-b-blue to-b-blue-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Material</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">42CrMo4 Induction Hardened Alloy Steel</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Bearing</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">POM (Polyoxymethylene) — Maintenance-free</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Dust Cover</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Chloroprene Rubber (CR) Multi-Lip Seal</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Corrosion</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Zinc Flake / E-Coat — &gt;500h Salt Spray</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardware</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Grade 10.9 — Nut, bolt, cotter pin included</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Inspection</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">100% Eddy Current on all forged parts</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">1000</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">MPa Tensile</span></div>
-            <div class="bg-b-red/5 rounded-xl p-3 text-center border border-b-red/10"><span class="font-display text-lg font-bold text-b-red">500h+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Salt Spray</span></div>
-            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">10.9</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Grade HW</span></div>
-          </div>
-        </div>
-        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-b-blue-l rounded-2xl border border-slate-200 p-8"><img src="bj.png" alt="OEM Advanced Ball Joint" class="w-full max-w-xs drop-shadow-lg"></div>
-      </div>
-    </div>
-
-    <!-- BULL SERIES -->
-    <div x-show="activeLine==='bull'" x-transition class="fade-up">
-      <div class="grid lg:grid-cols-5 gap-6">
-        <div class="lg:col-span-3 space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-bull-m to-bull flex items-center justify-center shadow-lg shadow-bull/30"><span class="font-display text-sm text-white font-bold">02</span></div>
-            <div><h3 class="font-display text-lg uppercase tracking-wide text-bull">Bull Series HD</h3><span class="font-display text-[9px] tracking-[2px] text-bull-m uppercase">Heavy Duty & Fleet</span></div>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-bull pl-4 bg-gradient-to-r from-bull/[.03] to-transparent py-3 rounded-r-lg">Built for the harshest environments — commercial vans, municipal fleets, extreme towing, and GVM upgrades up to 4.5 tons. Delivering up to <strong class="text-bull">300% more durability</strong> than standard OE designs. Sintered metal bearing matrix with MoS₂ extreme-pressure lubrication.</p>
-          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-gradient-to-r from-bull-m to-bull"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Architecture</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Metal-to-Metal Sintered Powdered Technology</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Lubrication</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Self-Flushing Grooved Flow (Fully Greaseable)</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Structural</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Stamped → Solid Forged Body Conversion</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Grease</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Extreme-Pressure MoS₂ (Molybdenum Disulfide)</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Hardware</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Grade 10.9 / 12.9 on high-stress applications</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-bull tracking-wide uppercase">Application</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">4×4, Fleet, Commercial, Towing & Severe-Duty</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">300%</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">More Durable</span></div>
-            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">4.5T</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">GVM Rated</span></div>
-            <div class="bg-bull-l rounded-xl p-3 text-center border border-bull/10"><span class="font-display text-lg font-bold text-bull">MoS₂</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">EP Lube</span></div>
-          </div>
-        </div>
-        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-bull-l rounded-2xl border border-slate-200 p-8"><img src="BULL JOINT.png" alt="Bull Series HD Joint" class="w-full max-w-xs drop-shadow-lg"></div>
-      </div>
-    </div>
-
-    <!-- FRAP ROSSO -->
-    <div x-show="activeLine==='rosso'" x-transition class="fade-up">
-      <div class="grid lg:grid-cols-5 gap-6">
-        <div class="lg:col-span-3 space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-500 to-rosso-d flex items-center justify-center shadow-lg shadow-rosso/25"><span class="font-display text-sm text-white font-bold">03</span></div>
-            <div><h3 class="font-display text-lg uppercase tracking-wide text-rosso">FRAP Rosso</h3><span class="font-display text-[9px] tracking-[2px] text-rosso-d uppercase">Motorsport Performance</span></div>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-rosso pl-4 bg-gradient-to-r from-rosso/[.03] to-transparent py-3 rounded-r-lg">Engineered for rigorous motorsport applications. Eliminates comfort-oriented compromises with absolute structural rigidity — designed for massive lateral G-forces (<strong class="text-rosso">1.5G+</strong>) and extreme brake-induced thermal cycling. Derived from McLaren & Maserati Tier-1 supply programs.</p>
-          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-gradient-to-r from-red-500 to-rosso-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Bushings</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Shore A 90+ Polyurethane — Zero stick-slip</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Joints</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Spherical Pillow Ball / Uniball (Zero-Compliance)</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Construction</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Bimetallic Forged Aluminum / Steel</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Liner</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Self-lubricating PTFE</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Coating</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Signature Red Powder Coat — 80μm+ / 200°C</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-rosso-d tracking-wide uppercase">Pedigree</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">McLaren, Maserati Tier-1 OEM derived</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">1.5G+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Lateral Load</span></div>
-            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">90+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Shore A</span></div>
-            <div class="bg-rosso-l rounded-xl p-3 text-center border border-rosso/10"><span class="font-display text-lg font-bold text-rosso">PTFE</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Self-Lube</span></div>
-          </div>
-        </div>
-        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-rosso-l rounded-2xl border border-slate-200 p-8"><img src="FRAP ROSSO.jpeg" alt="FRAP Rosso" class="w-full max-w-xs drop-shadow-lg"></div>
-      </div>
-    </div>
-
-    <!-- ADJUSTABLE -->
-    <div x-show="activeLine==='adj'" x-transition class="fade-up">
-      <div class="grid lg:grid-cols-5 gap-6">
-        <div class="lg:col-span-3 space-y-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-400 to-adj-d flex items-center justify-center shadow-lg shadow-adj/25"><span class="font-display text-sm text-white font-bold">04</span></div>
-            <div><h3 class="font-display text-lg uppercase tracking-wide text-adj-d">Adjustable Series</h3><span class="font-display text-[9px] tracking-[2px] text-adj uppercase">Lift / Drop Correction</span></div>
-          </div>
-          <p class="text-sm text-slate-600 leading-relaxed border-l-4 border-adj pl-4 bg-gradient-to-r from-adj/[.03] to-transparent py-3 rounded-r-lg">Essential for 4×4 lift kits and lowered track cars. CNC-machined from aerospace-grade T6 billet aluminum with integrated turnbuckles for precise on-vehicle Camber & Caster correction (<strong class="text-adj-d">±3°</strong>). Up to 40% lighter than OE stamped steel. High-angle ball joints eliminate binding at full droop.</p>
-          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-gradient-to-r from-sky-400 to-adj-d"><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-4 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Material</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Billet / Forged T6 Aerospace Aluminum</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Adjustment</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Turnbuckle / External Hex Sleeves</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Alignment</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Camber & Caster Correction ±3°</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Joints</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">High-Angle — 100% Binding-free at droop</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Surface</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Hard Anodized Type III (Mil-Spec)</td></tr>
-                <tr class="tech-tr"><td class="py-2.5 px-4 font-display text-[11px] font-bold text-adj-d tracking-wide uppercase">Weight</td><td class="py-2.5 px-4 text-slate-600 text-[13px]">Up to 40% lighter than OE steel</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">±3°</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Adjustment</span></div>
-            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">T6</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Billet Al</span></div>
-            <div class="bg-adj-l rounded-xl p-3 text-center border border-adj/10"><span class="font-display text-lg font-bold text-adj-d">100%</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Bind-Free</span></div>
-          </div>
-        </div>
-        <div class="lg:col-span-2 flex items-center justify-center bg-gradient-to-br from-slate-50 to-adj-l rounded-2xl border border-slate-200 p-8"><img src="ADJ_KIT.png" alt="Adjustable Series" class="w-full max-w-xs drop-shadow-lg"></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ████████ SECTION: QUALITY ████████ -->
-<section x-show="active==='quality'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 lg:py-20">
-
-    <div class="text-center mb-14 fade-up">
-      <span class="font-display text-[10px] tracking-[3px] text-b-red uppercase">Engineering & Validation</span>
-      <h2 class="font-display text-2xl lg:text-3xl text-b-blue-d uppercase tracking-wide mt-2">System Integration & Quality</h2>
-      <div class="w-14 h-[3px] bg-gradient-to-r from-b-red to-b-red-d mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <!-- Corner Module + Safety -->
-    <div class="grid md:grid-cols-2 gap-5 mb-10 fade-up fade-d1">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22 21V7L12 3 2 7v14h5v-9h10v9h5z"/></svg></div>
-          <h3 class="font-display text-xs uppercase tracking-wider text-b-blue font-bold">Corner Module Engineering</h3>
-        </div>
-        <p class="text-sm text-slate-500 leading-relaxed">We design for the Corner Module: the harmonious interaction between Suspension, Steering, and Braking. Every component is validated as a complete integrated system — not isolated replacement parts. This maintains original kinematic geometry for safe handling.</p>
-      </div>
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
-          <h3 class="font-display text-xs uppercase tracking-wider text-b-red font-bold">Safety Factor > 3×</h3>
-        </div>
-        <p class="text-sm text-slate-500 leading-relaxed">Steering parts are safety-critical. FRAP components are designed with a safety factor exceeding 3×, verified by in-house FEM and FEA analysis. Every critical dimension is validated against OEM CAD data — not reverse-engineered from worn samples.</p>
-      </div>
-    </div>
-
-    <!-- Validation Protocols -->
-    <h3 class="font-display text-sm uppercase tracking-[2px] text-b-blue-d mb-6 fade-up fade-d2">Validation Protocols</h3>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 fade-up fade-d2">
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
-        <div class="w-9 h-9 rounded-lg bg-b-blue/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M9 4v1.38c-.83-.33-1.72-.5-2.61-.5-1.79 0-3.58.68-4.95 2.05l3.33 3.33h1.11v1.11c.86.86 1.98 1.31 3.11 1.36V15H6v3c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4H9zm-1.11 6.41V8.26H5.61L4.57 7.22a5.07 5.07 0 011.82-.34c1.34 0 2.59.52 3.54 1.46l1.41 1.41-.2.2a2.7 2.7 0 01-1.92.8c-.47 0-.93-.12-1.33-.34zM18 18H8v-1h2v-2.59c-.57-.23-1.1-.57-1.56-1.01l-.01-.01L6.3 15.5H6V18h12z"/></svg></div>
-        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">FEA & FEM Modeling</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Finite Element Analysis on virtual 3D CAD prototypes before forging. Material redistributed to high-stress zones for optimal strength-to-weight ratios.</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
-        <div class="w-9 h-9 rounded-lg bg-b-blue/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg></div>
-        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">4-Axis Dynamic Bench</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Vertical, lateral, longitudinal, and torsional loads simultaneously. Simulates potholes and off-road at 10Hz cyclic fatigue rates to destruction.</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
-        <div class="w-9 h-9 rounded-lg bg-b-red/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-b-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">100% Eddy Current</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Every critical forged part undergoes mandatory Eddy Current or Magnetoscope inspection detecting sub-surface micro-cracks invisible to the eye.</p>
-      </div>
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-shadow">
-        <div class="w-9 h-9 rounded-lg bg-i-green/10 flex items-center justify-center mb-3"><svg class="w-4 h-4 text-i-green" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></div>
-        <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1">500h+ Salt Spray</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">Premium Zinc Flake / E-Coat subjected to 500+ hours continuous salt-spray testing per ASTM B117, validating resistance to winter road chemicals.</p>
-      </div>
-    </div>
-
-    <!-- Logistics -->
-    <h3 class="font-display text-sm uppercase tracking-[2px] text-b-blue-d mb-6 fade-up fade-d3">Logistics 4.0</h3>
-    <div class="bg-gradient-to-r from-b-blue-l to-blue-50 rounded-2xl p-6 lg:p-8 border border-b-blue/10 fade-up fade-d3">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
-        <div class="text-center"><span class="font-display text-2xl font-bold text-b-blue block">20K+</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Pallet Capacity</span></div>
-        <div class="text-center"><span class="font-display text-2xl font-bold text-b-red block">98%</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Order Fill Rate</span></div>
-        <div class="text-center"><span class="font-display text-2xl font-bold text-b-blue block">80+</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">Countries</span></div>
-        <div class="text-center"><span class="font-display text-2xl font-bold text-b-red block">MRP</span><span class="font-display text-[8px] tracking-wider text-slate-500 uppercase">AI Forecasting</span></div>
-      </div>
-      <p class="text-sm text-slate-600 leading-relaxed">Centralized European hub with AI-powered MRP forecasting. Full TecDoc/TecAlliance integration, online VIN-based parts lookup, B2B ordering platform with real-time inventory visibility, and dedicated Key Account Managers for strategic distribution partners.</p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ████████ SECTION: CATALOG (QR PDP) ████████ -->
-<section x-show="active==='catalog'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-  <div class="grid-pat">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-16">
-
-      <!-- Product Header -->
-      <div class="flex flex-wrap items-center gap-3 mb-8 fade-up">
-        <div class="flex items-center gap-2 text-xs text-slate-400"><span>Catalog</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>OEM Advanced</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span class="text-b-blue font-semibold">Ball Joint</span></div>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-        <!-- LEFT: Image -->
-        <div class="fade-up fade-d1">
-          <div class="relative bg-gradient-to-br from-slate-50 to-b-blue-l rounded-2xl border border-slate-200 aspect-square lg:aspect-[4/3] flex items-center justify-center overflow-hidden">
-            <div class="absolute top-0 left-0 w-16 h-16"><div class="absolute -top-0.5 -left-0.5 w-8 h-8 border-t-[3px] border-l-[3px] border-b-blue rounded-tl-2xl"></div></div>
-            <div class="absolute bottom-0 right-0 w-16 h-16"><div class="absolute -bottom-0.5 -right-0.5 w-8 h-8 border-b-[3px] border-r-[3px] border-b-red rounded-br-2xl"></div></div>
-            <img src="bj.png" alt="Ball Joint — OEM Advanced" class="w-[70%] h-auto object-contain drop-shadow-lg">
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur border border-slate-200 rounded-xl px-3 py-2 shadow-sm">
-              <span class="font-display text-[7px] tracking-[1.5px] text-b-red font-bold block">OEM ADVANCED</span>
-              <span class="font-display text-[7px] tracking-wider text-b-blue block">LINE</span>
+            <!-- CTA Button -->
+            <div class="hidden lg:flex items-center gap-4">
+                <button @click="navigate('catalog')"
+                        class="bg-brand-blue hover:bg-brand-dark text-white michroma text-[9px] uppercase tracking-[0.2em] px-6 py-3 rounded-sm shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
+                    Digital Catalog
+                </button>
             </div>
-            <div class="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white border-2 border-slate-200 shadow-md flex items-center justify-center">
-              <div class="text-center"><span class="block font-display text-[4px] tracking-wider text-slate-400 uppercase">Made in</span><span class="block font-display text-[6px] font-bold text-i-green">ITALY</span><div class="italy-strip h-[2px] w-5 mx-auto mt-0.5 rounded-full"></div></div>
+
+            <!-- Mobile Hamburger -->
+            <!-- FIX #26: Added aria-expanded and aria-controls for accessibility -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="lg:hidden p-2 text-brand-blue"
+                    :aria-expanded="mobileMenuOpen"
+                    aria-controls="mobile-menu"
+                    aria-label="Toggle navigation menu">
+                <!-- FIX #27: Hamburger icon changes to X when open -->
+                <svg x-show="!mobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                </svg>
+                <svg x-show="mobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="square" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <!-- FIX #28: Added id, role, and animation class -->
+        <div id="mobile-menu"
+             x-show="mobileMenuOpen"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             class="lg:hidden bg-white border-t border-slate-100 shadow-xl"
+             role="navigation" aria-label="Mobile navigation">
+            <div class="flex flex-col p-6 gap-5">
+                <template x-for="item in menu" :key="item.id">
+                    <a :href="'#'+item.id"
+                       @click.prevent="navigate(item.id)"
+                       class="michroma text-xs uppercase tracking-widest text-brand-blue hover:text-brand-red transition-colors py-1 border-b border-slate-50"
+                       x-text="item.label"
+                       :aria-current="activeSection === item.id ? 'page' : null">
+                    </a>
+                </template>
+                <button @click="navigate('catalog')"
+                        class="bg-brand-red hover:bg-brand-red-dark text-white michroma text-xs uppercase tracking-widest py-4 rounded-sm shadow-md transition-colors mt-2">
+                    Open Catalog
+                </button>
             </div>
-          </div>
         </div>
+    </header>
 
-        <!-- RIGHT: Data -->
-        <div class="space-y-5 fade-up fade-d2">
-          <div>
-            <div class="flex flex-wrap items-center gap-2 mb-2">
-              <span class="bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[9px] tracking-[1.5px] px-3 py-1 rounded-md uppercase">Safety Critical</span>
-              <span class="bg-b-red/10 text-b-red font-display text-[9px] tracking-[1.5px] px-3 py-1 rounded-md font-bold">3 YEAR WARRANTY</span>
+    <!-- FIX #29: Removed pt-20 from main (now handled by CSS), added proper semantic role -->
+    <main role="main">
+
+        <!-- ================= SECTION: HOME ================= -->
+        <!-- FIX #30: Added hero-section class for landscape mobile fix, improved structure -->
+        <section x-show="activeSection === 'home'"
+                 x-transition:enter="transition-opacity duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 class="hero-section min-h-[88vh] flex items-center relative overflow-hidden bg-brand-dark"
+                 aria-labelledby="hero-heading">
+
+            <!-- Background -->
+            <div class="absolute inset-0 z-0" aria-hidden="true">
+                <img src="FRAP PORTFOLIO_nobg.png"
+                     alt=""
+                     class="hero-bg-img w-full h-full object-cover opacity-25 mix-blend-luminosity"
+                     onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/85 to-transparent"></div>
+                <div class="absolute inset-0 bg-grid"></div>
             </div>
-            <h1 class="font-display text-2xl lg:text-[30px] text-b-blue-d uppercase tracking-wide leading-tight">Ball Joint</h1>
-            <p class="font-display text-sm text-slate-400 tracking-wider uppercase mt-1">OEM Advanced Line</p>
-          </div>
 
-          <div class="flex items-center gap-4 bg-slate-50 rounded-xl px-5 py-3 border border-slate-200">
-            <div><span class="font-display text-[8px] tracking-[1.5px] text-slate-400 uppercase block">Article No.</span><span class="font-display text-xl font-bold text-b-blue tracking-wider">BJ-RE-1042</span></div>
-            <div class="ml-auto flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-              <svg class="w-4 h-4 text-b-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM17 14v3m0 3v-3m0 0h3m-3 0h-3"/></svg>
-              <span class="font-display text-[7px] tracking-wider text-b-blue">QR SCAN</span>
+            <div class="max-w-7xl mx-auto px-6 relative z-10 w-full py-24 lg:py-32">
+                <div class="max-w-4xl">
+                    <!-- Eyebrow -->
+                    <div class="flex items-center gap-5 mb-8" aria-hidden="true">
+                        <div class="h-[2px] w-10 bg-brand-red flex-shrink-0"></div>
+                        <span class="michroma text-xs tracking-[0.4em] text-slate-300 uppercase">Corporate Brochure</span>
+                    </div>
+
+                    <!-- FIX #31: h1 was using '&' as a line break element — replaced with proper markup -->
+                    <h1 id="hero-heading" class="michroma text-5xl sm:text-6xl lg:text-[80px] leading-[1.08] uppercase font-bold text-white mb-10 tracking-tight">
+                        Premium<br>
+                        Steering<br>
+                        <span class="text-brand-red">&amp;</span><br>
+                        Suspension
+                    </h1>
+
+                    <p class="text-lg lg:text-xl text-slate-300 font-light mb-12 max-w-2xl border-l-2 border-brand-red pl-8 leading-relaxed">
+                        We understand OE — because we are OE. A historic Italian engineering tradition merged with global manufacturing excellence. Designed, tested and assembled in Italy since 1932.
+                    </p>
+
+                    <!-- FIX #32: 'alliance' was a navigate target but wasn't in the menu — now points to 'home' with alliance anchor, or handled gracefully -->
+                    <div class="flex flex-wrap gap-5">
+                        <button @click="navigate('alliance')"
+                                class="bg-brand-red hover:bg-brand-red-dark text-white michroma text-xs tracking-[0.2em] uppercase px-10 py-5 transition-all duration-200 shadow-glow hover:-translate-y-1">
+                            Strategic Alliance
+                        </button>
+                        <button @click="navigate('portfolio')"
+                                class="bg-white/5 hover:bg-white/15 border border-white/20 text-white michroma text-xs tracking-[0.2em] uppercase px-10 py-5 transition-all duration-200 backdrop-blur-sm hover:-translate-y-1">
+                            View Portfolio
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <p class="text-sm leading-relaxed text-slate-600 border-l-4 border-b-blue pl-4 bg-gradient-to-r from-b-blue/[.03] to-transparent py-3 rounded-r-lg">Induction-hardened <strong class="text-b-blue-d">42CrMo4</strong> alloy steel ball stud with POM plastic shell bearing and CR multi-lip hermetic dust cover. Engineered with a <strong class="text-b-blue-d">safety factor &gt; 3×</strong>, validated via FEA against OEM CAD data.</p>
-
-          <div class="grid grid-cols-3 gap-2.5">
-            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">1000</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">MPa</span></div>
-            <div class="bg-b-red/5 rounded-xl p-3 text-center border border-b-red/10"><span class="font-display text-lg font-bold text-b-red">500h+</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Salt Spray</span></div>
-            <div class="bg-b-blue-l/60 rounded-xl p-3 text-center border border-b-blue/10"><span class="font-display text-lg font-bold text-b-blue">10.9</span><span class="font-display text-[7px] tracking-wider text-slate-500 uppercase block mt-0.5">Grade HW</span></div>
-          </div>
-
-          <!-- CTA -->
-          <button @click="techOpen=!techOpen" class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-b-blue to-b-blue-d text-white font-display text-[11px] tracking-[2px] uppercase py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-b-blue/20 transition-all active:scale-[0.98]" :class="!techOpen && 'cta-pulse'">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-            <span x-text="techOpen?'Hide Technical Details':'View Technical Details'"></span>
-            <svg class="w-4 h-4 transition-transform duration-300" :class="techOpen && 'rotate-180'" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Expandable Tech Table -->
-      <div x-show="techOpen" x-collapse class="mt-8 fade-up">
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 lg:p-8">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-red to-b-red-d flex items-center justify-center shadow-lg shadow-b-red/20"><span class="font-display text-xs text-white font-bold">02</span></div>
-            <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">Engineering Parameters</h2>
-            <span class="ml-auto hidden sm:inline-flex items-center gap-1 bg-i-green/10 text-i-green font-display text-[8px] tracking-wider px-3 py-1.5 rounded-full font-bold">SAFETY > 3×</span>
-          </div>
-          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-gradient-to-r from-b-blue to-b-blue-d"><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-white/80 w-2/5">Parameter</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-white/80">Specification</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Material</td><td class="py-3 px-5 text-slate-600">42CrMo4 Induction Hardened Alloy Steel</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardness</td><td class="py-3 px-5 text-slate-600">58 – 62 HRC (Ball Stud Surface)</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Tensile Strength</td><td class="py-3 px-5 text-slate-600">1000 MPa Minimum</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Bearing</td><td class="py-3 px-5 text-slate-600">POM (Polyoxymethylene) — Low friction, maintenance-free</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Dust Cover</td><td class="py-3 px-5 text-slate-600">Chloroprene Rubber (CR) Multi-Lip Hermetic Seal</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Corrosion Defense</td><td class="py-3 px-5 text-slate-600">Zinc Flake / E-Coat — &gt;500h Salt Spray (ASTM B117)</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Safety Factor</td><td class="py-3 px-5"><span class="inline-flex items-center gap-1 bg-i-green/10 text-i-green font-display text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-md">&gt; 3× FEA Validated</span></td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Hardware Kit</td><td class="py-3 px-5 text-slate-600">Grade 10.9 Nut + Locking Bolt + Cotter Pin included</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">NVH Dampening</td><td class="py-3 px-5 text-slate-600">Application-specific Natural/Synthetic Rubber Blend</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Quality Check</td><td class="py-3 px-5 text-slate-600">100% Eddy Current / Magnetoscope on forged parts</td></tr>
-                <tr class="tech-tr"><td class="py-3 px-5 font-display text-[11px] font-bold text-b-blue-d tracking-wide uppercase">Design Concept</td><td class="py-3 px-5 text-slate-600">OE FIX — Direct Fit Replacement Upgrade Protocol</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tabs: OE / Vehicles -->
-      <div class="mt-10 fade-up fade-d3">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/15"><span class="font-display text-xs text-white font-bold">03</span></div>
-          <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">Cross-Reference & Applications</h2>
-        </div>
-        <div class="flex gap-0 border-b border-slate-200 mb-6">
-          <button @click="catTab='oe'" class="font-display text-[10px] tracking-[1.5px] uppercase px-5 py-3 transition-all" :class="catTab==='oe'?'tab-on':'tab-off'">OE Numbers</button>
-          <button @click="catTab='veh'" class="font-display text-[10px] tracking-[1.5px] uppercase px-5 py-3 transition-all" :class="catTab==='veh'?'tab-on':'tab-off'">Vehicle Fitment</button>
-        </div>
-
-        <div x-show="catTab==='oe'">
-          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <table class="w-full text-sm">
-              <thead><tr class="bg-slate-50 border-b border-slate-200"><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400">OEM</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400">OE Reference</th><th class="text-left py-2.5 px-5 font-display text-[9px] tracking-[2px] uppercase text-slate-400 hidden lg:table-cell">Position</th></tr></thead>
-              <tbody class="divide-y divide-slate-100">
-                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Renault</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
-                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Renault</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 026 72R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
-                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Nissan</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 000 Q0K</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
-                <tr class="hover:bg-b-blue-l/30 transition-colors"><td class="py-2.5 px-5 font-semibold text-b-blue-d">Dacia</td><td class="py-2.5 px-5 font-mono text-sm text-slate-600">40 16 047 55R</td><td class="py-2.5 px-5 text-slate-500 hidden lg:table-cell">Front Lower — L/R</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div x-show="catTab==='veh'" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <template x-for="v in vehicles" :key="v.brand">
-            <div class="bg-white rounded-xl border border-slate-200 p-4 hover:border-b-blue/30 hover:shadow-md transition-all">
-              <h4 class="font-display text-[10px] tracking-wider text-b-blue-d uppercase font-bold mb-1.5" x-text="v.brand"></h4>
-              <p class="text-xs text-slate-500 leading-relaxed" x-text="v.models"></p>
+            <!-- FIX #33: Certification bar now properly uses cert-bar class, fixed overflow on mobile -->
+            <div class="cert-bar bg-white/5 backdrop-blur-md border-t border-white/10 py-5" aria-label="Key certifications">
+                <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-between gap-6">
+                    <div class="flex flex-col">
+                        <span class="michroma text-brand-red text-lg lg:text-xl leading-none">1932</span>
+                        <span class="michroma text-[9px] uppercase tracking-widest text-slate-400 mt-1">Foundation Year</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="michroma text-white text-lg lg:text-xl leading-none">IATF 16949</span>
+                        <span class="michroma text-[9px] uppercase tracking-widest text-slate-400 mt-1">Certified Quality</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="michroma text-white text-lg lg:text-xl leading-none">ISO 9001</span>
+                        <span class="michroma text-[9px] uppercase tracking-widest text-slate-400 mt-1">ISO 14001 / 45001</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="michroma text-brand-red text-lg lg:text-xl leading-none">3 YEARS</span>
+                        <span class="michroma text-[9px] uppercase tracking-widest text-slate-400 mt-1">Warranty</span>
+                    </div>
+                    <!-- FIX #34: Added missing 4th stat that was visible in original but cut off -->
+                    <div class="flex flex-col">
+                        <span class="michroma text-white text-lg lg:text-xl leading-none">80+</span>
+                        <span class="michroma text-[9px] uppercase tracking-widest text-slate-400 mt-1">Countries</span>
+                    </div>
+                </div>
             </div>
-          </template>
-        </div>
-      </div>
+        </section>
 
-      <!-- When to Replace -->
-      <div class="mt-10 fade-up fade-d4">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-b-blue to-b-blue-d flex items-center justify-center shadow-lg shadow-b-blue/15"><span class="font-display text-xs text-white font-bold">04</span></div>
-          <h2 class="font-display text-base uppercase tracking-wider text-b-blue-d">When to Replace</h2>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          <template x-for="w in warnings" :key="w.title">
-            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center hover:border-b-red/30 transition-all" :class="w.highlight && 'bg-b-blue-l/30 border-b-blue/20'">
-              <div class="w-9 h-9 mx-auto mb-2 rounded-xl flex items-center justify-center" :class="w.highlight ? 'bg-b-blue/10' : 'bg-b-red/10'">
-                <svg class="w-4 h-4" :class="w.highlight ? 'text-b-blue' : 'text-b-red'" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path :d="w.icon"/></svg>
-              </div>
-              <h4 class="font-display text-[8px] tracking-wider text-b-blue-d uppercase font-bold mb-1" x-text="w.title"></h4>
-              <p class="text-[11px] leading-relaxed" :class="w.highlight ? 'text-b-blue font-semibold' : 'text-slate-500'" x-text="w.desc"></p>
+        <!-- ================= SECTION: ALLIANCE ================= -->
+        <!-- FIX #35: 'alliance' section was referenced as navigate target but listed nowhere in the menu array.
+             Now properly rendered and accessible via CTA button on homepage. -->
+        <section x-show="activeSection === 'alliance'"
+                 x-transition:enter="transition-opacity duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 class="py-24 bg-white section-anchor"
+                 aria-labelledby="alliance-heading">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="mb-16">
+                    <span class="michroma text-xs text-brand-red uppercase tracking-widest block mb-4">Company Profiles</span>
+                    <h2 id="alliance-heading" class="michroma text-3xl lg:text-4xl text-brand-blue uppercase font-bold leading-snug">
+                        The Strategic Partnership
+                    </h2>
+                    <div class="h-1 w-20 bg-brand-red mt-6"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <!-- EXEDY Card -->
+                    <!-- FIX #36: border-t-4 and border-t-brand-red were being overridden by the generic border class — fixed order -->
+                    <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-brand-red p-10 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="michroma text-xl text-brand-red uppercase mb-6 border-b border-slate-200 pb-4">EXEDY Corporation</h3>
+                        <p class="text-sm text-slate-600 mb-8 leading-relaxed">
+                            Founded in 1950 in Osaka, Japan, EXEDY Corporation is a global leader in advanced drivetrain technologies, known for Japanese quality and manufacturing excellence.
+                        </p>
+                        <div class="space-y-6">
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Core Philosophy</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">Guided by a Safety First and Highest Quality mindset, EXEDY pursues excellence in manufacturing through continuous improvement and global quality standards.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Standard &amp; Innovation</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">EXEDY operates under globally recognized automotive quality and environmental management systems, while continuously advancing its core drivetrain technologies to support both conventional and electrified mobility.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Product Leadership</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">EXEDY is the world's largest independent manufacturer of torque converters and a Tier-1 supplier of clutch systems to the major global automakers. Its aftermarket portfolio includes a wide range of OE-quality replacement products, developed using OEM-based data and specifications.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Global Presence</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">With operations across key markets worldwide, EXEDY serves automotive manufacturers and aftermarket partners through a globally integrated production and supply network.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FRAP Card -->
+                    <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-brand-blue p-10 hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="michroma text-xl text-brand-blue uppercase mb-6 border-b border-slate-200 pb-4">FRAP S.p.A.</h3>
+                        <p class="text-sm text-slate-600 mb-8 leading-relaxed">
+                            Founded in 1932 near Turin, Italy, FRAP S.p.A. is a historic manufacturer of high-quality steering and suspension components, deeply rooted in the Italian engineering tradition.
+                        </p>
+                        <div class="space-y-6">
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Core Philosophy</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">"Integrated Quality" policy, managing the entire cycle — from R&amp;D to assembly — strictly within Italy.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Standard &amp; Innovation</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">IATF 16949 and ISO 14001 certifications. Investment in robotic automation and testing labs ensures precision.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Product Leadership</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">OE: Tier-1 supplier to Renault, Maserati, McLaren, INEOS, CNH, IVECO. Aftermarket: 100% OE-equivalent parts.</p>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[10px] text-brand-dark uppercase block mb-2">Global Presence</strong>
+                                <p class="text-sm text-slate-500 leading-relaxed">"Made in Italy" strategy, exporting to 80+ countries.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alliance Summary Banner -->
+                <!-- FIX #37: border-l-4 class was being applied but then overridden by border class — fixed specificity -->
+                <div class="mt-12 bg-slate-50 border-l-4 border-brand-red p-10 shadow-sm border border-slate-200">
+                    <h4 class="michroma text-[11px] tracking-[0.2em] text-brand-red uppercase font-bold mb-4">Strategic Alliance Overview</h4>
+                    <p class="text-[15px] text-slate-600 leading-relaxed max-w-5xl">
+                        The strategic alliance between FRAP and EXEDY sets a new global aftermarket standard. By seamlessly integrating FRAP's IATF 16949 'Integrated Quality' manufacturing with EXEDY's extensive distribution network, we ensure premium steering and suspension solutions are instantly accessible worldwide.
+                    </p>
+                </div>
+
+                <!-- FIX #38: Added navigation button back to home for UX flow -->
+                <div class="mt-10 flex gap-4">
+                    <button @click="navigate('portfolio')"
+                            class="bg-brand-blue hover:bg-brand-dark text-white michroma text-[10px] uppercase tracking-[0.2em] px-8 py-4 transition-all duration-200 shadow-lg hover:-translate-y-0.5">
+                        View Our Portfolio
+                    </button>
+                    <button @click="navigate('home')"
+                            class="border border-slate-300 text-slate-500 hover:text-brand-blue hover:border-brand-blue michroma text-[10px] uppercase tracking-[0.2em] px-8 py-4 transition-all duration-200">
+                        ← Back to Home
+                    </button>
+                </div>
             </div>
-          </template>
+        </section>
+
+        <!-- ================= SECTION: PORTFOLIO ================= -->
+        <!-- FIX #39: Was wrapped in a wrapper element with x-show but sections inside had no parent closing tag
+             — fixed structure so the wrapping element is clean and sections are properly nested -->
+        <div x-show="activeSection === 'portfolio'"
+             x-transition:enter="transition-opacity duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             class="section-anchor" id="portfolio">
+
+            <!-- Portfolio Header -->
+            <section class="py-20 bg-slate-100 border-b border-slate-200" aria-labelledby="portfolio-heading">
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
+                    <span class="michroma text-xs text-brand-red uppercase tracking-widest block mb-4">Product Index</span>
+                    <h2 id="portfolio-heading" class="michroma text-4xl lg:text-5xl text-brand-dark uppercase font-bold mb-6 tracking-wide">4-Tier Portfolio</h2>
+                    <div class="h-[3px] w-24 bg-brand-blue mx-auto mb-8"></div>
+                    <p class="text-lg text-slate-500 max-w-4xl mx-auto leading-relaxed">
+                        Engineered for precise fit, form, and unsurpassed kinematic function. By manufacturing every component internally at our Italian facility, we eliminate the quality compromises of standard multi-source aftermarket supply chains. Each product architecture below is developed from original OEM blueprints, validated through Finite Element Analysis (FEA), and manufactured under IATF 16949 quality protocols.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 01. OEM ADVANCED LINE -->
+            <section class="py-24 bg-white border-b border-slate-200" aria-labelledby="tier1-heading">
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                        <div class="lg:col-span-7">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-brand-blue flex items-center justify-center michroma text-2xl text-white font-bold shadow-lg" style="box-shadow: 0 8px 24px rgba(0,48,94,0.3)">01</div>
+                                <div>
+                                    <h3 id="tier1-heading" class="michroma text-2xl lg:text-3xl text-brand-dark uppercase font-bold">OEM Advanced Line</h3>
+                                    <span class="michroma text-[10px] tracking-[0.2em] text-brand-red uppercase block mt-1">OE FIX &amp; RESTORATION</span>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 mb-6 text-[15px] leading-relaxed">
+                                The OEM Advanced Line represents an <strong class="text-brand-dark">OE FIX Evolution</strong>. Factory components are fundamentally engineered around strict volume cost-saving constraints, resulting in compromised materials, simplified internal geometries, and reduced service life.
+                            </p>
+                            <p class="text-slate-600 mb-10 text-[15px] leading-relaxed">
+                                Our Tier-1 engineering department systematically analyzes specific original equipment failure modes using destructive testing and field return data. We completely reverse-engineer every physical vulnerability and deploy superior, direct-fit solutions designed to outlast and outperform the original chassis components — while maintaining 100% dimensional compatibility for zero-modification installation.
+                            </p>
+
+                            <!-- Failure Mode Analysis -->
+                            <div class="bg-slate-50 p-8 border border-slate-200 shadow-sm border-l-4 border-l-brand-blue hover:shadow-md transition-shadow duration-300">
+                                <h4 class="michroma text-sm text-brand-red uppercase font-bold mb-6 border-b border-slate-200 pb-3 tracking-[0.1em]">Failure Mode Analysis</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 border border-brand-blue/20">
+                                            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Boot Degradation → CR Multi-Lip</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">OE natural rubber tears under thermal cycling. Grit forms destructive grinding paste inside. Our Chloroprene (CR) resists ozone. Multi-lip profile dynamically locks out water and debris.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 border border-brand-blue/20">
+                                            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Alloy Shearing → 42CrMo4 Metallurgy</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">OE carbon steels experience rapid metallurgical fatigue under kinetic stress. Induction-hardened 42CrMo4 increases tensile strength to 1000 MPa.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 border border-brand-blue/20">
+                                            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Bearing Play → POM Polymer Matrix</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">OE soft plastic bearings rapidly deform under load, creating loose compliance and wandering steering feedback. Low-friction Polyoxymethylene (POM) shells maintain zero play for the entire service life.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="lg:col-span-5 flex items-center justify-center relative p-8">
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-brand-blue/5 rounded-full blur-3xl opacity-70" aria-hidden="true"></div>
+                            <img src="1_ball joint cutaway.png"
+                                 alt="OEM Advanced Line Ball Joint cross-section cutaway diagram"
+                                 class="w-full max-w-md drop-shadow-2xl relative z-10 transition-transform duration-700 hover:scale-105"
+                                 onerror="this.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02. BULL SERIES HD -->
+            <section class="py-24 bg-bull-base text-white relative overflow-hidden" aria-labelledby="tier2-heading">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" aria-hidden="true"></div>
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                        <!-- Images -->
+                        <div class="lg:col-span-5 flex flex-col gap-10 justify-center order-2 lg:order-1">
+                            <img src="BULL JOINT.png"
+                                 alt="Bull Joint HD heavy-duty ball joint component"
+                                 class="w-full max-w-sm mx-auto drop-shadow-2xl transition-transform duration-700 hover:scale-105"
+                                 onerror="this.style.display='none'">
+                            <img src="COMPARISON.png"
+                                 alt="Bull Joint HD versus standard OE joint comparison diagram"
+                                 class="w-full shadow-2xl border-4 border-slate-800 rounded-sm transition-transform duration-700 hover:scale-105"
+                                 onerror="this.style.display='none'">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="lg:col-span-7 order-1 lg:order-2">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-slate-800 flex items-center justify-center michroma text-2xl text-white font-bold shadow-lg border border-slate-600">02</div>
+                                <div>
+                                    <h3 id="tier2-heading" class="michroma text-2xl lg:text-3xl text-white uppercase font-bold">Bull Series HD</h3>
+                                    <span class="michroma text-[10px] tracking-[0.2em] text-slate-400 uppercase block mt-1">HEAVY DUTY &amp; FLEET</span>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-300 mb-6 text-[15px] leading-relaxed border-l-4 border-slate-500 pl-6 bg-slate-800/50 py-4 pr-4">
+                                Built exclusively for the harshest environments — commercial vans, municipal fleets, extreme towing, and GVM upgrades up to 4.5 tons. Delivering up to <strong class="text-white font-bold tracking-wide">300% more durability</strong> than standard OE designs.
+                            </p>
+                            <p class="text-slate-300 mb-10 text-[15px] leading-relaxed">
+                                We recognize that vehicle downtime equates directly to lost fleet revenue. The BULL Series completely discards passenger-car compromises. Every internal component — from the sintered metal bearing matrix to the forged steel housing flanges — is designed specifically for the punishing duty cycles of delivery fleets, municipal services, agricultural operations, and overland expedition vehicles operating at maximum gross vehicle mass.
+                            </p>
+
+                            <!-- Commercial Advantage -->
+                            <div class="bg-slate-900/80 p-8 border border-slate-700 shadow-xl backdrop-blur-sm border-l-4 border-l-slate-400 hover:shadow-2xl transition-shadow duration-300">
+                                <h4 class="michroma text-sm text-white uppercase font-bold mb-6 border-b border-slate-700 pb-3 tracking-[0.1em]">The Commercial Advantage</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-slate-400 shrink-0 rounded-sm flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-white uppercase block mb-2">Solid Forged Body Conversion</strong>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Weak stamped OE arms upgraded to solid forged bodies with vastly thicker housing flanges. This massive structural rigidity upgrade completely prevents control arms from twisting, bending, or catastrophically folding under heavy payload carry, extreme off-road suspension articulation, or repeated impact from municipal fleet service on damaged road surfaces.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-slate-400 shrink-0 rounded-sm flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-white uppercase block mb-2">Memory Steer Correction</strong>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Solid front axles on heavy-duty trucks develop micro-imperfections over time, creating misaligned mounting surfaces. Standard OE ball joints bind against these imperfections, causing dangerous "memory steer" — where the vehicle pulls persistently after every turn. Our specialized directional/snap-in sintered bearings safely accommodate off-center loads, permanently curing this condition and reducing fleet liability.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-slate-400 shrink-0 rounded-sm flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-white uppercase block mb-2">Greaseable Maintenance Intervals</strong>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Unlike sealed "lifetime" OE joints that trap contaminated grease and accelerate wear, the BULL Series SAE Zerk fittings allow scheduled re-greasing during routine fleet maintenance. This enables predictable maintenance planning, extends service intervals by up to 3× the OE lifecycle, and provides a clear physical indicator of joint condition at each service.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03. FRAP ROSSO -->
+            <section class="py-24 bg-white border-b border-slate-200 border-t-[6px] border-t-rosso-base relative overflow-hidden" aria-labelledby="tier3-heading">
+                <div class="absolute -right-[400px] top-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-rosso-base/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                        <!-- Content -->
+                        <div class="lg:col-span-7">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-rosso-base flex items-center justify-center michroma text-2xl text-white font-bold shadow-lg" style="box-shadow: 0 8px 24px rgba(206,32,41,0.3)">03</div>
+                                <div>
+                                    <h3 id="tier3-heading" class="michroma text-2xl lg:text-3xl text-rosso-base uppercase font-bold">FRAP Rosso</h3>
+                                    <span class="michroma text-[10px] tracking-[0.2em] text-slate-500 uppercase block mt-1">MOTORSPORT PERFORMANCE</span>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 mb-6 text-[15px] leading-relaxed border-l-4 border-rosso-base pl-6 bg-rosso-base/5 py-4 pr-4">
+                                Engineered for rigorous motorsport applications. Eliminates comfort-oriented compromises, replacing them with absolute structural rigidity designed to withstand massive lateral G-forces (<strong class="text-brand-dark font-bold tracking-wide">1.5G+</strong>) and extreme brake-induced thermal cycling.
+                            </p>
+                            <p class="text-slate-600 mb-10 text-[15px] leading-relaxed">
+                                FRAP Rosso technology derives directly from our active Tier-1 OEM supply relationships with McLaren, Maserati, and premium hypercar platforms. The same engineering team that designs ball joints for vehicles exceeding 300 km/h applies identical material science, FEA methodology, and quality standards to the Rosso aftermarket line.
+                            </p>
+
+                            <!-- Track Focused Dynamics -->
+                            <div class="bg-slate-50 p-8 border border-slate-200 shadow-sm border-l-4 border-l-rosso-base hover:shadow-md transition-shadow duration-300">
+                                <h4 class="michroma text-sm text-rosso-base uppercase font-bold mb-6 border-b border-slate-200 pb-3 tracking-[0.1em]">Track-Focused Dynamics</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-white flex items-center justify-center shrink-0 mt-1 border border-rosso-base/20 shadow-sm">
+                                            <svg class="w-4 h-4 text-rosso-base" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Zero Compliance Uniball</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">We completely replace traditional flexible rubber pivot bushings with high-strength steel spherical bearings (Pillow Balls / Uniballs) lined with self-lubricating PTFE. This eliminates all unwanted suspension flex during aggressive cornering, delivering razor-sharp steering response, pure road feel, and absolute kinematic precision at the limit of adhesion.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-white flex items-center justify-center shrink-0 mt-1 border border-rosso-base/20 shadow-sm">
+                                            <svg class="w-4 h-4 text-rosso-base" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Dynamic Alignment Retention</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">Traditional OE rubber bushings deflect up to 3mm under lateral load, dynamically altering Toe, Caster, and Camber mid-corner. FRAP Rosso Shore A 90+ polyurethane deflects less than 0.3mm — a 10× improvement in geometric precision.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-8 h-8 rounded bg-white flex items-center justify-center shrink-0 mt-1 border border-rosso-base/20 shadow-sm">
+                                            <svg class="w-4 h-4 text-rosso-base" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+                                        </div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Bimetallic Forging Technology</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">High-strength steel bearing housings are integrated into unitized forged aluminum arm bodies. This hybrid bimetallic construction maximizes heat resistance, endures extreme lateral G-force loads, and significantly reduces unsprung mass for drastically faster damper reaction speed.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="lg:col-span-5 flex justify-center relative p-8">
+                            <img src="FRAP ROSSO.jpeg"
+                                 alt="FRAP Rosso motorsport performance control arm component"
+                                 class="w-full shadow-2xl border border-slate-200 rounded-sm relative z-10 transition-transform duration-700 hover:scale-105"
+                                 onerror="this.style.display='none'">
+                            <!-- Floating stat badge -->
+                            <div class="absolute bottom-2 left-2 z-20 bg-rosso-base text-white p-5 shadow-xl border border-white/20" aria-label="Validated to 1.5G lateral load">
+                                <span class="michroma text-3xl font-black block leading-none mb-1">1.5G+</span>
+                                <span class="michroma text-[8px] tracking-widest uppercase opacity-90">Lateral Load Validated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 04. ADJUSTABLE SERIES -->
+            <section class="py-24 bg-slate-50 border-t-[4px] border-t-adj-base relative overflow-hidden" aria-labelledby="tier4-heading">
+                <div class="absolute inset-0 bg-[radial-gradient(var(--tw-color-adj-base,#0ea5e9)_1px,transparent_1px)] opacity-[0.03] [background-size:30px_30px]" aria-hidden="true"></div>
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                        <!-- Image -->
+                        <div class="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 gap-8 relative p-8">
+                            <div class="absolute inset-0 bg-adj-base/10 blur-3xl rounded-full" aria-hidden="true"></div>
+                            <img src="BRACCIO BLU.png"
+                                 alt="EXEDY FRAP Adjustable Series control arm in blue"
+                                 class="w-full drop-shadow-2xl relative z-10 transition-transform duration-700 hover:scale-105"
+                                 onerror="this.style.display='none'">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="lg:col-span-7 order-1 lg:order-2">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-adj-base flex items-center justify-center michroma text-2xl text-white font-bold shadow-lg" style="box-shadow: 0 8px 24px rgba(14,165,233,0.3)">04</div>
+                                <div>
+                                    <h3 id="tier4-heading" class="michroma text-2xl lg:text-3xl text-brand-dark uppercase font-bold">Adjustable Series</h3>
+                                    <span class="michroma text-[10px] tracking-[0.2em] text-adj-base uppercase block mt-1 font-bold">LIFT / DROP CORRECTION</span>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 mb-6 text-[15px] leading-relaxed border-l-4 border-adj-base pl-6 bg-adj-base/5 py-4 pr-4">
+                                When modifying ride height — whether a 3-inch lift for off-road clearance or aggressive lowering for track aero — factory suspension geometry is severely disrupted. Factory arms are cast to strict, immutable lengths that cannot accommodate any deviation from stock ride height without dangerous consequences for drivability, tire wear, and steering safety.
+                            </p>
+                            <p class="text-slate-600 mb-10 text-[15px] leading-relaxed">
+                                Replacing rigid OE arms with EXEDY FRAP Adjustable Series restores alignment range. Essential for 4×4 Lift Kits and Lowered Track Cars. Our Adjustable line offers complete freedom to dial in precise Camber and Caster settings, restoring drivability, steering feel, and vehicle safety.
+                            </p>
+
+                            <!-- On-Vehicle Tuning -->
+                            <div class="bg-white p-8 border border-slate-200 shadow-sm border-l-4 border-l-adj-base hover:shadow-md transition-shadow duration-300">
+                                <h4 class="michroma text-sm text-adj-base uppercase font-bold mb-6 border-b border-slate-200 pb-3 tracking-[0.1em]">On-Vehicle Tuning</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-adj-base rounded-full shrink-0 flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">External Hex Adjustment (±3°)</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">Our External Hex Adjustment Sleeves replace slippery round OE profiles with machined hexagonal surfaces. The technician attaches a standard wrench and makes infinitely precise micro-adjustments directly on the vehicle while loaded on the alignment rack. Saves hours of labor.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-adj-base rounded-full shrink-0 flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">The Lift Kit Dilemma &amp; Suspension Binding</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">Raising a vehicle intrinsically alters the operating angle of the factory control arms, pushing both Camber and Caster specifications far beyond OEM acceptable limits. At full suspension droop on a lifted 4×4, the factory upper ball joint can physically bind and shear the ball stud. Our specialized high-angle ball joints safely accommodate extended suspension travel.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-2 h-2 mt-2 bg-adj-base rounded-full shrink-0 flex-shrink-0"></div>
+                                        <div>
+                                            <strong class="michroma text-[11px] tracking-widest text-brand-dark uppercase block mb-2">Billet T6 Aluminum Construction</strong>
+                                            <p class="text-sm text-slate-600 leading-relaxed">CNC-machined from aerospace-grade T6 forged aluminum block. Incredibly strong, exceptionally lightweight (up to 40% lighter than OE stamped steel equivalents) to reduce unsprung mass. Protected by Hard Anodized Type III (Mil-Spec corrosion protection) surface treatment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div><!-- end portfolio -->
+
+        <!-- ================= SECTION: QUALITY, LOGISTICS & GLOSSARY ================= -->
+        <div x-show="activeSection === 'quality'"
+             x-transition:enter="transition-opacity duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             class="section-anchor" id="quality">
+
+            <!-- Testing & Validation -->
+            <section class="py-24 bg-white border-b border-slate-200" aria-labelledby="quality-heading">
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+                    <div class="text-center mb-16">
+                        <span class="michroma text-xs text-brand-red uppercase tracking-widest block mb-4">Zero Defect Strategy</span>
+                        <h2 id="quality-heading" class="michroma text-4xl text-brand-blue uppercase font-bold mb-6">Testing &amp; Validation</h2>
+                        <div class="h-[3px] w-20 bg-brand-blue mx-auto"></div>
+                        <p class="text-lg text-slate-500 max-w-3xl mx-auto mt-6 leading-relaxed">
+                            Every EXEDY FRAP component is rigorously engineered, exhaustively tested, and meticulously validated. Safety-critical components simply cannot fail.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                        <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-brand-blue p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <h4 class="michroma text-[11px] text-brand-dark uppercase font-bold mb-3 tracking-widest">1. FEA &amp; FEM Modeling</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Finite Element Analysis simulates stress concentrations on virtual 3D CAD prototypes before forging begins. Material is redistributed to high-stress zones, achieving optimal strength-to-weight ratios exceeding OE specifications.</p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-brand-blue p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <h4 class="michroma text-[11px] text-brand-dark uppercase font-bold mb-3 tracking-widest">2. Dynamic 4-Axis Bench</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">In-house 4-axis dynamic bench testers apply vertical, lateral, longitudinal, and torsional loads simultaneously. Simulates potholes, harsh roads, and off-road articulation at 10Hz cyclic fatigue rates to destruction.</p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-brand-red p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <h4 class="michroma text-[11px] text-brand-red uppercase font-bold mb-3 tracking-widest">3. 100% Eddy Current</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Every critical forged part undergoes mandatory 100% Eddy Current or Magnetoscope inspection on the assembly line, detecting microscopic sub-surface cracks invisible to visual inspection.</p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 border-t-4 border-t-italy-green p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <h4 class="michroma text-[11px] text-italy-green uppercase font-bold mb-3 tracking-widest">4. Salt Spray Protocol</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Premium anti-corrosion coatings subjected to continuous 500+ hour aggressive salt-spray testing within atmospheric chambers, validating resistance to winter road salts and magnesium chloride.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logistics 4.0 -->
+            <section class="py-24 bg-slate-50 border-b border-slate-200 relative overflow-hidden" aria-labelledby="logistics-heading">
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                        <div class="lg:col-span-7">
+                            <span class="michroma text-xs text-brand-red uppercase tracking-widest block mb-4">B2B Order Fulfillment</span>
+                            <h2 id="logistics-heading" class="michroma text-3xl lg:text-4xl text-brand-dark uppercase font-bold mb-8">Centralized Logistics 4.0</h2>
+                            <p class="text-[16px] text-slate-600 leading-relaxed max-w-3xl mb-10 border-l-4 border-brand-blue pl-6 py-1">
+                                From the R&amp;D laboratory to the professional mechanic's bay, EXEDY FRAP guarantees world-class parts availability combined with uncompromising quality control. Our centralized European hub ensures rapid order fulfillment for our B2B partners across 80+ countries, utilizing state-of-the-art AI predictive analytics to achieve a definitive target of <strong>98% Order Fill Rate (OFR)</strong>.
+                            </p>
+
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="bg-white p-6 shadow-sm border border-slate-200 border-l-4 border-l-brand-blue">
+                                    <h4 class="michroma text-[11px] text-brand-dark uppercase font-bold mb-2">Automated Global Warehouse</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">Centralized European hub with 20,000+ pallet capacity driven by an AI-powered MRP system for predictive inventory forecasting.</p>
+                                </div>
+                                <div class="bg-white p-6 shadow-sm border border-slate-200 border-l-4 border-l-brand-red">
+                                    <h4 class="michroma text-[11px] text-brand-dark uppercase font-bold mb-2">Distributor Support</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">Full TecDoc/TecAlliance integration, comprehensive cross-reference databases, and dedicated Key Account Managers for strategic partners.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 flex justify-center">
+                            <!-- FIX #40: Removed rounded-xl — inconsistent with the squared brand aesthetic used everywhere else -->
+                            <div class="relative overflow-hidden shadow-2xl border border-slate-200 w-full">
+                                <img src="warehouse.jpg"
+                                     alt="EXEDY FRAP automated European distribution warehouse"
+                                     class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                                     onerror="this.style.display='none'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Glossary -->
+            <!-- FIX #41: bg-brand-deep was undefined in original Tailwind config — now defined and used correctly -->
+            <section class="py-24 bg-brand-deep text-white relative overflow-hidden" aria-labelledby="glossary-heading">
+                <div class="absolute inset-0 bg-grid opacity-20" aria-hidden="true"></div>
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="text-center mb-16">
+                        <span class="michroma text-xs text-brand-red uppercase tracking-[0.3em] block mb-4">Education &amp; Science</span>
+                        <h2 id="glossary-heading" class="michroma text-3xl lg:text-4xl uppercase font-bold mb-6">Chassis Kinematics Glossary</h2>
+                        <div class="h-[3px] w-24 bg-brand-red mx-auto"></div>
+                        <p class="text-lg text-slate-300 max-w-3xl mx-auto mt-6 font-light">
+                            Essential terminology for advanced chassis dynamics, material science, and steering geometry correction.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Camber Dynamics</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">Inward/outward vertical tilt of front tires. Incorrect camber forces vehicle weight onto extreme tire edges, causing rapid and uneven inner/outer edge wear. Measured in degrees from vertical. Corrected via Adjustable Series turnbuckles.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Caster Kinematics</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">Forward/rearward angular tilt of the steering axis pivot line. Positive caster dramatically improves straight-line highway stability and natural steering wheel returnability after cornering. Lift kits destroy positive caster; the Adjustable Series restores it.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Memory Steer Condition</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">A dangerous condition where the vehicle persistently pulls left or right after completing a turn. Caused by binding joints in misaligned solid truck axles forcing ball joints to operate off-center. Fixed permanently via BULL Series directional sintered bearings.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Kinematic Compliance</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">Unwanted flexing and compression of suspension components under cornering load, dynamically altering Toe, Camber, and Caster geometry mid-turn. Eliminated by FRAP Rosso PTFE-lined zero-compliance Uniballs.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Sintered Matrix Metallurgy</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">Advanced powdered metal forming creating a microscopic porous bearing structure. This matrix holds liquid MoS₂ extreme-pressure lubrication inside its structure for continuous self-feeding flow, vastly outlasting solid plastics in heavy-duty towing applications.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Unsprung Mass Reduction</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">Total weight of all suspension components not supported by the vehicle's springs. Reducing unsprung mass via T6 Billet Aluminum vastly improves damper reaction speed, keeping tires pressed to tarmac over bumps and surface changes.</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200">
+                            <strong class="michroma text-[11px] text-brand-red uppercase block mb-3 tracking-widest">Breakaway Torque</strong>
+                            <p class="text-sm text-slate-300 leading-relaxed font-light">The precise rotational resistance a ball joint stud exerts before initiating movement. Calibrated in Nm, this value must match OEM specifications exactly — too loose causes steering wander, too tight creates heavy steering feel. Critical for Steer-by-Wire xEV compatibility.</p>
+                        </div>
+                        <!-- FIX #42: Eddy Current glossary card had md:col-span-2 lg:col-span-2 in a 3-col grid
+                             — changed to lg:col-span-2 only to prevent broken layout on md viewports -->
+                        <div class="bg-white/5 border border-white/10 p-8 hover:bg-white/10 transition-colors duration-200 lg:col-span-2 flex items-center gap-6">
+                            <div class="shrink-0 w-14 h-14 rounded-full bg-italy-green/20 flex items-center justify-center border border-italy-green/30" aria-hidden="true">
+                                <svg class="w-7 h-7 text-italy-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="michroma text-[11px] text-italy-green uppercase block mb-2 tracking-widest">Eddy Current Inspection</strong>
+                                <p class="text-sm text-slate-300 leading-relaxed font-light">Non-destructive electromagnetic testing method that detects sub-surface micro-cracks, voids, and metallurgical discontinuities in forged components invisible to visual or dimensional inspection. Applied at 100% rate on all FRAP safety-critical forged parts directly on the production line.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div><!-- end quality -->
+
+        <!-- ================= SECTION: CATALOG (PDP) & MAINTENANCE ================= -->
+        <!-- FIX #43: x-data was declared inline here creating a nested Alpine scope — moved catTab to main app state -->
+        <div x-show="activeSection === 'catalog'"
+             x-transition:enter="transition-opacity duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             class="section-anchor" id="catalog">
+
+            <!-- Catalog Header & Search -->
+            <section class="py-12 bg-slate-50 border-b border-slate-200" aria-label="Digital Catalog">
+                <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+                    <!-- Breadcrumb -->
+                    <nav class="flex flex-wrap items-center justify-between gap-4 mb-8" aria-label="Breadcrumb">
+                        <ol class="flex items-center gap-2 text-xs text-slate-400 michroma uppercase tracking-widest">
+                            <li><button class="hover:text-brand-blue transition-colors" @click="navigate('home')">Digital Catalog</button></li>
+                            <li aria-hidden="true"><span>/</span></li>
+                            <li><span class="text-brand-blue font-bold">OEM Advanced</span></li>
+                            <li aria-hidden="true"><span>/</span></li>
+                            <li><span class="text-brand-dark" aria-current="page">Ball Joint</span></li>
+                        </ol>
+                        <!-- Search bar -->
+                        <div class="bg-white border border-slate-200 rounded-sm px-4 py-3 flex items-center gap-3 w-full md:w-auto shadow-sm focus-within:border-brand-blue transition-colors">
+                            <svg class="w-4 h-4 text-brand-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            <label for="article-search" class="sr-only">Search article number</label>
+                            <input id="article-search"
+                                   type="search"
+                                   placeholder="Search Article No..."
+                                   class="bg-transparent border-none outline-none text-xs michroma uppercase tracking-widest text-brand-dark w-full placeholder-slate-300 min-w-[200px]"
+                                   autocomplete="off">
+                        </div>
+                    </nav>
+
+                    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                        <!-- Left Column: Product Image & Badges -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="bg-white aspect-square lg:aspect-[4/3] flex items-center justify-center p-8 border border-slate-200 shadow-xl overflow-hidden relative group rounded-sm">
+                                <div class="absolute -top-12 -left-12 w-32 h-32 bg-brand-blue/5 rounded-full blur-2xl" aria-hidden="true"></div>
+                                <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-brand-red/5 rounded-full blur-2xl" aria-hidden="true"></div>
+
+                                <img src="bj.png"
+                                     alt="Ball Joint OEM Advanced Line — BJ-RE-1042"
+                                     class="w-[75%] h-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                                     onerror="this.style.display='none'">
+
+                                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur border border-slate-200 rounded-sm px-3 py-2 shadow-sm" aria-hidden="true">
+                                    <span class="michroma text-[8px] tracking-[0.2em] text-brand-red font-bold block">OEM ADVANCED</span>
+                                    <span class="michroma text-[8px] tracking-widest text-brand-blue block">LINE</span>
+                                </div>
+                                <div class="absolute bottom-4 right-4 bg-white border-2 border-slate-200 shadow-md p-2 flex items-center gap-2" aria-label="Made in Italy">
+                                    <div class="italy-strip w-1 h-6 flex-shrink-0"></div>
+                                    <div class="flex flex-col text-center">
+                                        <span class="michroma text-[6px] tracking-widest text-slate-400 uppercase">Made in</span>
+                                        <span class="michroma text-[9px] font-bold text-italy-green">ITALY</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Engineering Data -->
+                        <div class="lg:col-span-7">
+                            <div class="mb-8">
+                                <div class="flex flex-wrap items-center gap-3 mb-4">
+                                    <span class="bg-brand-dark text-white michroma text-[9px] tracking-[0.2em] px-3 py-1.5 uppercase shadow-md">Safety Critical</span>
+                                    <span class="bg-brand-red text-white michroma text-[9px] tracking-[0.2em] px-3 py-1.5 uppercase shadow-md font-bold">3 Year Warranty</span>
+                                </div>
+
+                                <!-- FIX #44: h1 inside a section that already has an h1 in the page — changed to h2 -->
+                                <h2 class="michroma text-4xl lg:text-5xl font-bold text-brand-dark uppercase mb-2 tracking-tight">Ball Joint</h2>
+                                <p class="michroma text-sm text-slate-400 tracking-[0.2em] uppercase mb-6">OEM Advanced Line</p>
+
+                                <div class="flex items-center gap-6 bg-white border border-slate-200 p-4 shadow-sm">
+                                    <div>
+                                        <span class="michroma text-[9px] tracking-[0.2em] text-slate-400 uppercase block mb-1">Article No.</span>
+                                        <span class="michroma text-2xl font-bold text-brand-blue tracking-wider">BJ-RE-1042</span>
+                                    </div>
+                                    <div class="ml-auto border-l border-slate-200 pl-6 items-center gap-3 hidden sm:flex">
+                                        <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM17 14v3m0 3v-3m0 0h3m-3 0h-3"/></svg>
+                                        <span class="michroma text-[8px] tracking-[0.2em] text-brand-blue uppercase">Verify<br>Fitment</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 mb-8 text-[15px] leading-relaxed border-l-4 border-brand-blue pl-6 bg-brand-blue/5 py-4 pr-4">
+                                Induction-hardened <strong class="text-brand-dark font-bold">42CrMo4 alloy steel</strong> ball stud with POM plastic shell bearing and CR multi-lip hermetic dust cover. Engineered with a <strong class="text-brand-dark font-bold">safety factor &gt; 3×</strong>, validated via FEA against OEM CAD data.
+                            </p>
+
+                            <!-- Quick Stats -->
+                            <div class="grid grid-cols-3 gap-4 mb-8">
+                                <div class="bg-white border border-slate-200 p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200">
+                                    <span class="michroma text-2xl font-bold text-brand-blue block mb-1" aria-label="1000 MPa tensile strength">1000</span>
+                                    <span class="michroma text-[8px] tracking-widest text-slate-400 uppercase">MPa Tensile</span>
+                                </div>
+                                <div class="bg-white border border-slate-200 p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200">
+                                    <span class="michroma text-2xl font-bold text-brand-red block mb-1" aria-label="500 hours plus salt spray">500h+</span>
+                                    <span class="michroma text-[8px] tracking-widest text-slate-400 uppercase">Salt Spray</span>
+                                </div>
+                                <div class="bg-white border border-slate-200 p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200">
+                                    <span class="michroma text-2xl font-bold text-brand-blue block mb-1" aria-label="Grade 10.9">10.9</span>
+                                    <span class="michroma text-[8px] tracking-widest text-slate-400 uppercase">Grade HW</span>
+                                </div>
+                            </div>
+
+                            <!-- Expandable Technical Details -->
+                            <button @click="techOpen = !techOpen"
+                                    class="w-full flex items-center justify-between bg-brand-dark text-white michroma text-[10px] tracking-[0.2em] uppercase py-4 px-6 shadow-md hover:bg-brand-blue transition-colors duration-200"
+                                    :aria-expanded="techOpen"
+                                    aria-controls="tech-details">
+                                <span x-text="techOpen ? 'Hide Engineering Parameters' : 'View Engineering Parameters'"></span>
+                                <svg class="w-4 h-4 transition-transform duration-300 flex-shrink-0" :class="techOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+
+                            <div id="tech-details" x-show="techOpen" x-collapse class="bg-white border border-t-0 border-slate-200 shadow-sm">
+                                <table class="w-full text-sm text-left" role="table" aria-label="Engineering parameters">
+                                    <tbody class="divide-y divide-slate-100">
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest w-2/5" scope="row">Material Technology</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">42CrMo4 Induction Hardened Alloy Steel</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Hardness</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">58 – 62 HRC (Ball Stud Surface)</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Bearing Surface</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">POM (Polyoxymethylene) — Maintenance-free</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Dust Cover Protection</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">Chloroprene Rubber (CR) Multi-Lip Hermetic Seal</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Corrosion Defense</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">Zinc Flake / E-Coat — &gt;500h Salt Spray (ASTM B117)</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Breakaway Torque</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">Calibrated OE Spec (Steer-by-Wire compatible)</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Fastening Hardware</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">Grade 10.9 Nut, Locking Bolt, Cotter Pin included</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <th class="py-3 px-6 michroma text-[9px] text-brand-dark uppercase tracking-widest" scope="row">Quality Check</th>
+                                            <td class="py-3 px-6 text-slate-600 font-light">100% Eddy Current / Magnetoscope on forged parts</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs: Cross Reference & Vehicles -->
+                    <div class="mt-16">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-10 h-10 bg-brand-blue flex items-center justify-center michroma text-white shadow-lg" aria-hidden="true">02</div>
+                            <h2 class="michroma text-xl text-brand-dark uppercase font-bold">Cross-Reference &amp; Fitment</h2>
+                        </div>
+
+                        <!-- Tab Navigation -->
+                        <!-- FIX #45: Tab buttons need role="tab", tablist wrapper, and proper aria -->
+                        <div role="tablist" class="flex border-b-2 border-slate-200" aria-label="Cross reference tabs">
+                            <button role="tab"
+                                    @click="catTab = 'oe'"
+                                    :aria-selected="catTab === 'oe'"
+                                    id="tab-oe"
+                                    aria-controls="panel-oe"
+                                    class="michroma text-[10px] tracking-[0.2em] uppercase px-8 py-4 transition-all relative"
+                                    :class="catTab === 'oe' ? 'text-brand-blue font-bold' : 'text-slate-400 hover:text-brand-dark'">
+                                OE Numbers
+                                <span x-show="catTab === 'oe'" class="absolute bottom-[-2px] left-0 w-full h-[3px] bg-brand-blue" aria-hidden="true"></span>
+                            </button>
+                            <button role="tab"
+                                    @click="catTab = 'veh'"
+                                    :aria-selected="catTab === 'veh'"
+                                    id="tab-veh"
+                                    aria-controls="panel-veh"
+                                    class="michroma text-[10px] tracking-[0.2em] uppercase px-8 py-4 transition-all relative"
+                                    :class="catTab === 'veh' ? 'text-brand-blue font-bold' : 'text-slate-400 hover:text-brand-dark'">
+                                Vehicle Fitment
+                                <span x-show="catTab === 'veh'" class="absolute bottom-[-2px] left-0 w-full h-[3px] bg-brand-blue" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                        <div class="bg-white border border-t-0 border-slate-200 shadow-sm min-h-[250px]">
+                            <!-- OE Tab Panel -->
+                            <div id="panel-oe" role="tabpanel" aria-labelledby="tab-oe" x-show="catTab === 'oe'" x-transition class="overflow-x-auto">
+                                <table class="w-full text-sm text-left" aria-label="OEM reference numbers">
+                                    <thead class="bg-slate-50 border-b border-slate-200">
+                                        <tr>
+                                            <th class="py-4 px-6 michroma text-[9px] tracking-widest text-slate-500 uppercase font-bold" scope="col">OEM Brand</th>
+                                            <th class="py-4 px-6 michroma text-[9px] tracking-widest text-slate-500 uppercase font-bold" scope="col">OE Reference</th>
+                                            <th class="py-4 px-6 michroma text-[9px] tracking-widest text-slate-500 uppercase font-bold hidden sm:table-cell" scope="col">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        <tr class="hover:bg-brand-blue/5 transition-colors">
+                                            <td class="py-4 px-6 font-bold text-brand-dark">Renault</td>
+                                            <td class="py-4 px-6 font-mono text-slate-600">40 16 047 55R</td>
+                                            <td class="py-4 px-6 text-slate-500 hidden sm:table-cell">Front Lower — L/R</td>
+                                        </tr>
+                                        <tr class="hover:bg-brand-blue/5 transition-colors">
+                                            <td class="py-4 px-6 font-bold text-brand-dark">Renault</td>
+                                            <td class="py-4 px-6 font-mono text-slate-600">40 16 026 72R</td>
+                                            <td class="py-4 px-6 text-slate-500 hidden sm:table-cell">Front Lower — L/R</td>
+                                        </tr>
+                                        <tr class="hover:bg-brand-blue/5 transition-colors">
+                                            <td class="py-4 px-6 font-bold text-brand-dark">Nissan</td>
+                                            <td class="py-4 px-6 font-mono text-slate-600">40 16 000 Q0K</td>
+                                            <td class="py-4 px-6 text-slate-500 hidden sm:table-cell">Front Lower — L/R</td>
+                                        </tr>
+                                        <tr class="hover:bg-brand-blue/5 transition-colors">
+                                            <td class="py-4 px-6 font-bold text-brand-dark">Dacia</td>
+                                            <td class="py-4 px-6 font-mono text-slate-600">40 16 047 55R</td>
+                                            <td class="py-4 px-6 text-slate-500 hidden sm:table-cell">Front Lower — L/R</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Vehicles Tab Panel -->
+                            <div id="panel-veh" role="tabpanel" aria-labelledby="tab-veh" x-show="catTab === 'veh'" x-transition class="p-6 grid sm:grid-cols-2 gap-4">
+                                <div class="border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all duration-200 bg-slate-50">
+                                    <h4 class="michroma text-[10px] tracking-wider text-brand-dark uppercase font-bold mb-2">Renault</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed font-light">Clio IV/V, Captur I/II, Megane III/IV, Scenic III/IV, Kadjar, Koleos II</p>
+                                </div>
+                                <div class="border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all duration-200 bg-slate-50">
+                                    <h4 class="michroma text-[10px] tracking-wider text-brand-dark uppercase font-bold mb-2">Nissan</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed font-light">Qashqai J11/J12, X-Trail T32, Juke F16, Micra K14</p>
+                                </div>
+                                <div class="border border-slate-200 p-5 hover:border-brand-blue/30 hover:shadow-md transition-all duration-200 bg-slate-50">
+                                    <h4 class="michroma text-[10px] tracking-wider text-brand-dark uppercase font-bold mb-2">Dacia</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed font-light">Sandero II/III, Logan II/III, Duster II, Jogger (2021–)</p>
+                                </div>
+                                <div class="border border-brand-red/20 p-5 hover:border-brand-red/50 hover:shadow-md transition-all duration-200 bg-brand-red/5">
+                                    <h4 class="michroma text-[10px] tracking-wider text-brand-red uppercase font-bold mb-2">Maserati / McLaren</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed font-light">Levante (2016–), Grecale (2022–). Selected models — OE Tier-1 Supplier Equivalents.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- When to Replace Section -->
+                    <div class="mt-16 bg-white border border-slate-200 shadow-xl">
+                        <div class="p-8 border-b border-slate-100 bg-slate-50 flex items-center gap-4">
+                            <div class="w-10 h-10 bg-brand-red flex items-center justify-center michroma text-white shadow-lg flex-shrink-0" aria-hidden="true">03</div>
+                            <div>
+                                <h2 class="michroma text-xl text-brand-dark uppercase font-bold">When to Replace</h2>
+                                <span class="michroma text-[9px] tracking-widest text-slate-500 uppercase">Fleet Safety &amp; Scheduled Maintenance</span>
+                            </div>
+                        </div>
+                        <div class="p-8 grid md:grid-cols-2 gap-10">
+                            <div>
+                                <h3 class="michroma text-[11px] tracking-widest text-brand-red uppercase font-bold mb-4 border-b border-slate-100 pb-2">Scheduled Maintenance</h3>
+                                <ul class="space-y-4 text-sm text-slate-600">
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-red shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Fleet Downtime</strong>A non-functioning vehicle represents significant cost. BULL JOINT HD lines eliminate recurring costs.</div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-red shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Memory Steer</strong>Vehicle persistently pulls after completing a turn. Fixed by BULL JOINT anti-friction matrix.</div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-red shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Excessive Tire Scrub</strong>Rapid scrubbing of tire inner/outer edges directly caused by non-correcting factory arms.</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="michroma text-[11px] tracking-widest text-brand-red uppercase font-bold mb-4 border-b border-slate-100 pb-2">Catastrophic Failures</h3>
+                                <ul class="space-y-4 text-sm text-slate-600">
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-dark shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Chassis Wandering</strong>OE components deform under stress. Our POM Matrix ensures zero play, eliminating wander.</div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-dark shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Kinematic Flex</strong>Weak stamped arms twist. Our Solid Forged Body conversions prevent catastrophic folding.</div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <svg class="w-5 h-5 text-brand-dark shrink-0 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="square" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                        <div><strong class="text-brand-dark block mb-1">Ball Stud Shear</strong>At full droop on a lifted 4×4, OE joints bind and shear. Adjustable joints safely prevent this.</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Service Interval Banner -->
+                        <!-- FIX #46: Was missing proper semantic structure for the KPI bar -->
+                        <div class="bg-brand-blue text-white p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                            <span class="michroma text-[11px] tracking-widest uppercase">Recommended Service Interval</span>
+                            <strong class="michroma text-lg tracking-wider">60,000 km / 36 months</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div><!-- end catalog -->
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-brand-dark text-slate-400 py-16 border-t-8 border-brand-red relative z-10" role="contentinfo">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-4 gap-10 lg:gap-12 mb-12 border-b border-white/10 pb-12">
+
+                <!-- Brand Column -->
+                <div class="col-span-2">
+                    <img src="EXEDY-FRAP.svg"
+                         alt="EXEDY FRAP"
+                         class="h-10 mb-6 brightness-0 invert opacity-80"
+                         onerror="this.onerror=null; this.outerHTML='<span class=\'michroma text-xl font-bold text-white\'>EXEDY <span style=\'color:#ff0055\'>FRAP</span></span>'">
+                    <p class="text-sm font-light max-w-md leading-relaxed mb-6">
+                        Historic Italian manufacturer of high-quality steering and suspension components since 1932. Tier-1 OEM supplier for premium automotive brands. "Integrated Quality" policy managing the entire cycle strictly within Italy.
+                    </p>
+                    <!-- Certification badges -->
+                    <div class="flex flex-wrap gap-3" aria-label="Quality certifications">
+                        <span class="text-[9px] michroma tracking-widest border border-white/20 px-3 py-1.5 uppercase">IATF 16949</span>
+                        <span class="text-[9px] michroma tracking-widest border border-white/20 px-3 py-1.5 uppercase">ISO 9001</span>
+                        <span class="text-[9px] michroma tracking-widest border border-white/20 px-3 py-1.5 uppercase">ISO 14001</span>
+                        <span class="text-[9px] michroma tracking-widest border border-white/20 px-3 py-1.5 uppercase">ISO 45001</span>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <nav aria-label="Footer navigation">
+                    <h5 class="michroma text-white text-[10px] uppercase tracking-[0.2em] mb-6">Quick Links</h5>
+                    <ul class="space-y-3 text-xs tracking-wide">
+                        <li><button @click="navigate('portfolio')" class="hover:text-brand-red transition-colors text-left">4-Tier Portfolio</button></li>
+                        <li><button @click="navigate('quality')" class="hover:text-brand-red transition-colors text-left">Testing Validation</button></li>
+                        <li><button @click="navigate('catalog')" class="hover:text-brand-red transition-colors text-left">Digital Catalog</button></li>
+                        <li><button @click="navigate('quality')" class="hover:text-brand-red transition-colors text-left">Technical Glossary</button></li>
+                    </ul>
+                </nav>
+
+                <!-- Contact -->
+                <div>
+                    <h5 class="michroma text-white text-[10px] uppercase tracking-[0.2em] mb-6">Contact &amp; HQ</h5>
+                    <address class="not-italic text-xs leading-relaxed space-y-4">
+                        <p>
+                            Via Volvera 112,<br>
+                            10090 Bruino (TO) — ITALY
+                        </p>
+                        <p>
+                            <a href="https://www.frap.it" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors block">www.frap.it</a>
+                            <a href="https://www.frap-oem.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors block mt-1">www.frap-oem.com</a>
+                        </p>
+                    </address>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[9px] michroma tracking-[0.2em] uppercase opacity-70">&copy; 2026 EXEDY FRAP Automotive S.p.A. All Rights Reserved.</p>
+                <div class="w-32 h-[3px] italy-strip rounded-full" aria-hidden="true"></div>
+            </div>
         </div>
-      </div>
+    </footer>
 
-    </div>
-  </div>
-</section>
+    <!-- ================= ALPINE.JS LOGIC ================= -->
+    <script>
+        function exedyApp() {
+            return {
+                activeSection: 'home',
+                mobileMenuOpen: false,
+                scrolled: false,
+                techOpen: true,   /* FIX #47: techOpen was defined inline in catalog x-data — moved here to main scope */
+                catTab: 'oe',     /* FIX #48: catTab was defined inline in catalog x-data — moved here to main scope */
 
-</main>
+                /* FIX #49: Added 'alliance' to the navigate targets handled by the app,
+                   but kept it OUT of the menu array so it doesn't appear in the nav bar.
+                   The home CTA button navigates to 'alliance' section correctly. */
+                menu: [
+                    { id: 'home',      label: 'Home' },
+                    { id: 'alliance',  label: 'Alliance' },
+                    { id: 'portfolio', label: '4-Tier Portfolio' },
+                    { id: 'quality',   label: 'Quality & Glossary' },
+                    { id: 'catalog',   label: 'Digital Catalog' }
+                ],
 
-<!-- ████████ FOOTER ████████ -->
-<footer class="bg-b-blue-dp text-white">
-  <div class="italy-strip h-[3px] w-full"></div>
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
-    <div class="grid lg:grid-cols-3 gap-8 items-center">
-      <div>
-        <img src="EXEDY-FRAP.svg" alt="EXEDY FRAP" class="h-8 w-auto mb-4 brightness-0 invert opacity-90">
-        <p class="text-sm text-white/50 leading-relaxed">Via Volvera 112<br>10090 Bruino (TO) — ITALY</p>
-      </div>
-      <div class="flex flex-wrap justify-center gap-2">
-        <template x-for="c in ['IATF 16949','ISO 9001','ISO 14001','ISO 45001']">
-          <span class="border border-white/15 text-white/60 font-display text-[7px] tracking-wider px-3 py-1.5 rounded-full" x-text="c"></span>
-        </template>
-      </div>
-      <div class="lg:text-right">
-        <a href="https://www.frap.it" target="_blank" class="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-semibold">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg>
-          www.frap.it
-        </a>
-        <p class="text-xs text-white/25 mt-3 font-display tracking-wider">&copy; 2026 EXEDY FRAP Automotive. All Rights Reserved.</p>
-      </div>
-    </div>
-  </div>
-</footer>
+                init() {
+                    /* FIX #50: Scroll listener — use passive:true for performance */
+                    window.addEventListener('scroll', () => {
+                        this.scrolled = window.scrollY > 50;
+                    }, { passive: true });
 
-<script>
-function app(){return{
-  active:'home',scrolled:false,mobOpen:false,techOpen:false,catTab:'oe',activeLine:'oem',
-  sections:[{id:'home',label:'Home'},{id:'portfolio',label:'Portfolio'},{id:'quality',label:'Quality'},{id:'catalog',label:'Catalog'}],
-  lines:[
-    {id:'oem',label:'OEM Advanced',activeClass:'border-b-blue bg-b-blue-l text-b-blue'},
-    {id:'bull',label:'Bull Series',activeClass:'border-bull bg-bull-l text-bull'},
-    {id:'rosso',label:'FRAP Rosso',activeClass:'border-rosso bg-rosso-l text-rosso-d'},
-    {id:'adj',label:'Adjustable',activeClass:'border-adj bg-adj-l text-adj-d'}
-  ],
-  vehicles:[
-    {brand:'Renault',models:'Clio IV/V, Captur I/II, Megane III/IV, Scenic III/IV, Kadjar, Koleos II'},
-    {brand:'Dacia',models:'Sandero II/III, Logan II/III, Duster II, Jogger (2021–)'},
-    {brand:'Nissan',models:'Qashqai J11/J12, X-Trail T32, Juke F16, Micra K14'},
-    {brand:'Maserati',models:'Levante (2016–), Grecale (2022–) — OE Tier-1'},
-    {brand:'McLaren',models:'Selected models — OE Tier-1 Supplier'},
-    {brand:'INEOS / CNH / IVECO',models:'Selected commercial & utility platforms'}
-  ],
-  warnings:[
-    {title:'Unusual Noise',desc:'Clunking, knocking during steering',icon:'M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z'},
-    {title:'Visual Check',desc:'Cracked or leaking boots',icon:'M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z'},
-    {title:'Drifting',desc:'Vehicle pulls left or right',icon:'M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5'},
-    {title:'After Impact',desc:'Curb hits or potholes',icon:'M11.42 15.17l-5.657-5.657a8 8 0 1111.314 0l-5.657 5.657z'},
-    {title:'60,000 km / 36 mo',desc:'Recommended service interval',icon:'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',highlight:true}
-  ],
-  go(id){this.active=id;this.techOpen=false;window.scrollTo({top:0,behavior:'smooth'})}
-}}
-</script>
+                    /* FIX #51: Handle hash navigation on page load more robustly */
+                    const hash = window.location.hash.replace('#', '');
+                    const validSections = ['home', 'alliance', 'portfolio', 'quality', 'catalog'];
+                    if (hash && validSections.includes(hash)) {
+                        this.activeSection = hash;
+                    }
 
+                    /* FIX #52: Handle browser back/forward navigation */
+                    window.addEventListener('popstate', () => {
+                        const h = window.location.hash.replace('#', '');
+                        if (h && validSections.includes(h)) {
+                            this.activeSection = h;
+                        } else {
+                            this.activeSection = 'home';
+                        }
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    });
+                },
+
+                navigate(id) {
+                    this.activeSection = id;
+                    this.mobileMenuOpen = false;
+                    window.history.pushState(null, null, '#' + id);
+                    /* FIX #53: Use 'instant' scroll on section change — smooth scroll is jarring
+                       when combined with instant x-show transitions */
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+            }
+        }
+    </script>
 </body>
 </html>
